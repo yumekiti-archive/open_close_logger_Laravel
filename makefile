@@ -67,4 +67,4 @@ npm:
 
 .PHONY: ssl
 ssl:
-        bash ./docker/nginx/ssl/ssl.sh
+	bash ./docker/nginx/ssl/ssl.sh
