@@ -9,7 +9,7 @@ test:
 	make seed
 
 .PHONY: test-ssl
-test:
+test-ssl:
 	make ssl
 	make init
 	make seed
