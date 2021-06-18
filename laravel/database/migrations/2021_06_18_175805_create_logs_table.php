@@ -14,9 +14,15 @@ class CreateLogsTable extends Migration
     public function up()
     {
         Schema::create('logs', function (Blueprint $table) {
+            
             $table->bigIncrements('id');
             $table->timestamps();
+
+            //状態
             $table->boolean('status');
+
+            //外部キー制約
+            $table->unsignedBigInteger('device_id')->index();
             $table->foreign('device_id')->references('id')->on('devices');
         });
     }

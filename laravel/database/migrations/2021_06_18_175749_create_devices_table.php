@@ -14,11 +14,18 @@ class CreateDevicesTable extends Migration
     public function up()
     {
         Schema::create('devices', function (Blueprint $table) {
+
             $table->bigIncrements('id');
             $table->timestamps();
+
+            //ユニークでかぶりなしのトークン
             $table->string('token', 100)->unique();
             $table->string('device_name', 30);
+
+            //外部キー制約
+            $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
