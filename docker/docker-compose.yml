@@ -35,9 +35,9 @@ services:
             TZ: Asia/Tokyo
         tty: true
     
-    node:
-        build: ./node/
-        container_name: logger-node
+    vue:
+        build: ./vue/
+        container_name: logger-vue
         volumes:
             - ../vue:/mnt/vue/
         stdin_open: true
