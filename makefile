@@ -5,6 +5,7 @@ dc := user=$(USER) docker-compose
 
 .PHONY: test
 test:
+	make ssl
 	make init
 	make seed
 
@@ -63,3 +64,7 @@ d-rm:
 npm:
 	$(dc) -f ./docker/docker-compose.yml exec vue /bin/bash -c "npm install" && \
 	$(dc) -f ./docker/docker-compose.yml exec vue /bin/bash -c "npm run build"
+
+.PHONY: ssl
+ssl:
+        bash ./docker/nginx/ssl/ssl.sh

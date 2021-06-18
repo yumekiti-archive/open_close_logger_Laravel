@@ -1,0 +1,3 @@
+.PHONY: ssl
+ssl:
+        bash ./docker/nginx/ssl.sh
