@@ -3,13 +3,13 @@ version: "3"
 services:
 
     nginx:
-        build: ./docker/nginx/dockerfile
+        build: ./nginx/
         container_name: logger-nginx
         ports:
             - 8080:80
         volumes:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
-            - ./laravel/public:/var/www/public
+            - ../laravel/public:/var/www/public
         depends_on:
             - php
   
