@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+
+    nginx:
+        build: ./docker/nginx/dockerfile
+        container_name: logger-nginx
+        ports:
+            - 8080:80
+        volumes:
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+            - ./laravel/public:/var/www/public
+        depends_on:
+            - php
+  
+    php:
+        build: ./php/
+        user: ${user}
+        container_name: logger-php
+        volumes:
+            - ../laravel:/var/www
+        links:
+            - db
+        depends_on:
+            - db
+    
+    db:
+        build: ./mysql/
+        container_name: logger-db
+        environment:
+            MYSQL_DATABASE: logger-database
+            MYSQL_USER: logger-user
+            MYSQL_PASSWORD: logger-password
+            MYSQL_ROOT_PASSWORD: root
+            TZ: Asia/Tokyo
+        tty: true
+    
+    node:
+        build: ./node/
+        container_name: logger-node
+        volumes:
+            - ../vue:/mnt/vue/
+        stdin_open: true
+        tty: true
+        command: [sh, -c, npm install && npm run serve -- --port 8080]
