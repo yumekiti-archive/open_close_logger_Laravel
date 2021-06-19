@@ -14,11 +14,17 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        $user = User::where('id')->get();
         factory(User::class)->create([
-            'name' => 'test' . $user,
-            'email' => 'test' . $user . '@test.jp',
+            'name' => 'test1',
+            'email' => 'test1@test.jp',
             'password' => bcrypt('testtest')
         ]);
+        factory(User::class)->create([
+            'name' => 'test2',
+            'email' => 'test2@test.jp',
+            'password' => bcrypt('testtest')
+        ]);
+
+        factory(User::class, 3);
     }
 }

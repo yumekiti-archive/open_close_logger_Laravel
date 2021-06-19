@@ -27,6 +27,10 @@ init:
 seed:
 	$(dc) -f ./docker/docker-compose.yml exec php php artisan db:seed
 
+.PHONY: fresh
+fresh:
+	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate:fresh --seed
+
 .PHONY: up
 up:
 	$(dc) -f ./docker/docker-compose.yml up -d --build
