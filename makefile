@@ -59,6 +59,10 @@ sh-php:
 sh-db:
 	$(dc) -f ./docker/docker-compose.yml exec db /bin/bash
 
+.PHONY: sh-db-in
+sh-db-in:
+	$(dc) -f ./docker/docker-compose.yml exec db /bin/bash -c "mysql -u logger-user -p logger-database"
+
 .PHONY: sh-vue
 sh-vue:
 	$(dc) -f ./docker/docker-compose.yml exec vue /bin/bash

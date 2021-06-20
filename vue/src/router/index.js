@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Device from '../views/Device.vue'
+import DeviceDetail from '../views/DeviceDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/device',
     name: 'Device',
     component: Device
+  },
+  {
+    path: '/device/detail',
+    name: 'DeviceDetail',
+    component: DeviceDetail
   },
   {
     path: '/about',

@@ -16,7 +16,6 @@ class CreateTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->timestamps();
 
             //かぶりなしの種類
             $table->string('type_name', 30)->unique();

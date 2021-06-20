@@ -9,18 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class DeviceController extends Controller
 {
     //
-    public function create(Request $request)
+    public function show()
     {
-        $device = Auth::user()->devices();
+        $devices = Auth::user()->devices()->get();
 
-        $device->create([
-            $request->only([
-                'device_name',
-            ]),
-            'user_id' => Auth::id(),
-        ]);
-
-        return $device;
+        return $devices;
     }
 
 }

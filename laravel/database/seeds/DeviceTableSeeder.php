@@ -15,9 +15,14 @@ class DeviceTableSeeder extends Seeder
     {
         //
         DB::table('devices')->insert([
-            "device_name" => "テストデバイス",
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
             "token" => "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasda",
+            "device_name" => "テストデバイス",
             "user_id" => 1
         ]);
+
+        factory(Device::class, 4)->create();
+
     }
 }

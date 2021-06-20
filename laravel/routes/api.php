@@ -20,3 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //user
 Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
+
+//device
+Route::get('/devices', 'DeviceController@show')->middleware('auth:sanctum');
+
+//log
+Route::get('/device-logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');

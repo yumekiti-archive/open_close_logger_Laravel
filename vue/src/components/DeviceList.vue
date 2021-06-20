@@ -1,19 +1,21 @@
 <template>
     <v-app>
         <v-container>
+            
             <v-row>
 
-                <v-col class="card-col" cols="6" sm="4" v-for="item in items" :key="item.id">
+                <v-col class="card-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
 
-                    <v-card class="card" :to="{name: 'DeviceDetail', query: {id: item.id}}">
+                    <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
+                        <!-- アイコンだよ -->
                         <v-icon class="card-icon">mdi-lock-open-variant-outline</v-icon>
 
                         <!--タイトルだよ-->
-                        <v-card-title> {{item.name}} </v-card-title>
+                        <v-card-title> {{device.device_name}} </v-card-title>
 
                         <!--サブタイトルだよ-->
-                        <v-card-subtitle> {{item.state}} </v-card-subtitle>
+                        <v-card-subtitle> {{device.state}} </v-card-subtitle>
 
                     </v-card>
 
@@ -28,15 +30,28 @@
 <script>
     export default {
         name: 'Device',
-        data:()=>({
-            items:[
-                { name: "test", state: "false" },
-                { name: "test", state: "false" },
-                { name: "test", state: "false" },
-                { name: "test", state: "false" },
-                { name: "test", state: "false" },
-            ],
-        }),
+        computed: {
+
+            //検索 + ソート
+            searchDevices(){
+                let devices = this.$store.state.device.devices.filter(device => {
+                    return device.device_name.includes(this.$store.state.device.keyword)
+                })
+                switch(this.$store.state.device.sort){
+                    case 0:
+                        return devices
+                    case 1:
+                        return devices.reverse()
+                    default:
+                        return ''
+                }
+            },
+            
+        },
+        created() {
+            //取得
+            this.$store.dispatch('device/getDevices')
+        },
     }
 </script>
 

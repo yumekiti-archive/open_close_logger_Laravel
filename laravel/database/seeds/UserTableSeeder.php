@@ -15,16 +15,20 @@ class UserTableSeeder extends Seeder
     {
         //
         factory(User::class)->create([
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
             'name' => 'test1',
             'email' => 'test1@test.jp',
             'password' => bcrypt('testtest')
         ]);
         factory(User::class)->create([
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
             'name' => 'test2',
             'email' => 'test2@test.jp',
             'password' => bcrypt('testtest')
         ]);
 
-        factory(User::class, 3);
+        factory(User::class, 3)->create();
     }
 }

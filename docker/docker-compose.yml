@@ -30,7 +30,7 @@ services:
         environment:
             MYSQL_DATABASE: logger-database
             MYSQL_USER: logger-user
-            MYSQL_PASSWORD: logger-password
+            MYSQL_PASSWORD: pass
             MYSQL_ROOT_PASSWORD: root
             TZ: Asia/Tokyo
         tty: true
