@@ -11,9 +11,10 @@ class DeviceController extends Controller
     //
     public function show()
     {
-        $devices = Auth::user()->devices()->get();
+        
+        $devices = Auth::user()->devices()->with('logs', 'type')->get();
 
-        return $devices;
+        return response()->json($devices);
     }
 
 }

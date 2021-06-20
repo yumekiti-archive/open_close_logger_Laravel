@@ -1,7 +1,6 @@
 <template>
     <v-app>
         <v-container>
-            
             <v-row>
 
                 <v-col class="card-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
@@ -9,20 +8,19 @@
                     <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                         <!-- アイコンだよ -->
-                        <v-icon class="card-icon">mdi-lock-open-variant-outline</v-icon>
+                        <v-icon v-if="device.type" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
 
                         <!--タイトルだよ-->
                         <v-card-title> {{device.device_name}} </v-card-title>
 
                         <!--サブタイトルだよ-->
-                        <v-card-subtitle> {{device.state}} </v-card-subtitle>
+                        <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
 
                     </v-card>
 
                 </v-col>
 
             </v-row>
-
         </v-container>
     </v-app>
 </template>

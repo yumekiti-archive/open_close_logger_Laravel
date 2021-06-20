@@ -17,9 +17,11 @@ class CreateTypesTable extends Migration
 
             $table->bigIncrements('id');
 
-            //かぶりなしの種類
-            $table->string('type_name', 30)->unique();
-            $table->string('type_icon', 50);
+            //種類
+            $table->string('type_name', 30);
+            $table->string('open_icon', 50);
+            $table->string('close_icon', 50);
+            $table->string('cmd', 100);
 
             //外部キー制約
             $table->unsignedBigInteger('device_id')->index();

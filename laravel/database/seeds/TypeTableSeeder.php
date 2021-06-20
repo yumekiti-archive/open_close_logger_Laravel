@@ -12,10 +12,15 @@ class TypeTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('types')->insert([
-            "type_name" => "鍵",
-            "type_icon" => "mdi-lock-open-variant-outline",
-            "device_id" => 1,
-        ]);
+        for($i = 1; $i <= 5; $i++ ){
+            DB::table('types')->insert([
+                "type_name" => "鍵",
+                "open_icon" => "mdi-lock-open-variant-outline",
+                "close_icon" => "mdi-lock-outline",
+                "cmd" => "ls -a",
+                "device_id" => $i,
+            ]);
+        }
+        
     }
 }

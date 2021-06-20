@@ -5,6 +5,7 @@
 use App\Log;
 use Faker\Generator as Faker;
 
+
 $factory->define(Log::class, function (Faker $faker) {
     return [
         //
