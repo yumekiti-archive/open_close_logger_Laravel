@@ -22,10 +22,11 @@ Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
 
 //device
-Route::get('/devices', 'DeviceController@show')->middleware('auth:sanctum');
+Route::get('/devices', 'DeviceController@full')->middleware('auth:sanctum');
+Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sanctum');
 
 //log
 Route::get('/device-logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
 
 //type
-Route::get('/type', 'TypeController@show')->middleware('auth:sanctum');
+Route::get('/types/{device_id}', 'TypeController@show')->middleware('auth:sanctum');

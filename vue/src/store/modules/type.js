@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     namespaced:true,
     state: {
@@ -11,9 +13,9 @@ export default {
     getters:{
     },
     actions: {
-        async getTypes({ commit }){
+        async getTypes({ commit }, id){
             await axios
-            .get('/api/types')
+            .get('/api/types/' + id)
             .then( response =>{
                 commit('setTypes', response);
             })

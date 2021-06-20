@@ -3,9 +3,9 @@
 
         <Navigation />
         
-        <Header scroll-target="#scrolling-techniques-6" />
+        <Header scroll-target="#scrolling" />
 
-        <v-main id="scrolling-techniques-6">
+        <v-main id="scrolling">
             <router-view/>
         </v-main>
         

@@ -6,20 +6,19 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
-class LogController extends Controller
+class TypeController extends Controller
 {
     //
     public function show($device_id)
     {
-        
-        $logs = Auth::user()->
+        $devices = Auth::user()->
         devices()->
         firstOrFail()->
-        logs()->
+        type()->
         firstOrFail()->
         where('device_id', $device_id)->
         get();
 
-        return $logs;
+        return response()->json($devices);
     }
 }

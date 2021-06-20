@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 
 import device from '@/store/modules/device.js'
 import log from '@/store/modules/log.js'
-import type from '@/store/modules/device.js'
-import user from '@/store/modules/device.js'
+import type from '@/store/modules/type.js'
+import user from '@/store/modules/user.js'
 
 Vue.use(Vuex)
 
