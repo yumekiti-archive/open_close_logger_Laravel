@@ -1,3 +1,7 @@
+<template>
+    <div>
+    </div>
+</template>
 <script>
     import axios from 'axios';
 
@@ -6,9 +10,8 @@
         async created(){
             await axios
             .post("/api/logout")
-            .then(response => {
-                console.log(response);
-                localStorage.removeItem("auth");
+            .then(() => {
+                localStorage.clear();
                 this.$router.go(this.$router.push("/login"));
             })
             .catch(error => {
