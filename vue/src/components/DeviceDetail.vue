@@ -59,11 +59,12 @@
     .card-row{
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     .detail{
         position: sticky;
         top: 100px;
+        overflow-x: hidden;
     }
     .icon{
         font-size: 300px;
