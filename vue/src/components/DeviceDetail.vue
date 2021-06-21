@@ -70,5 +70,6 @@
         margin-top: 10px;
         display: flex;
         justify-content: center;
+        overflow: hidden;
     }
 </style>
