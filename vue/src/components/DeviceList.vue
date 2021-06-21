@@ -2,8 +2,7 @@
     <v-app>
         <v-container class="list-container">
 
-                <draggable class="row drag" handle=".card" :options="{delay:200, animation:300}">
-
+                <draggable class="row drag" v-model="Full" handle=".card" v-bind="getOptions">
                     <v-col class="list-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
 
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
@@ -22,42 +21,54 @@
                         </v-card>
 
                     </v-col>
-
                 </draggable>
 
         </v-container>
+        <Fab />
     </v-app>
 </template>
 
 <script>
     import draggable from 'vuedraggable'
+    import Fab from '@/components/Fab.vue'
 
     export default {
         name: 'Device',
         components: {
             draggable,
+            Fab,
         },
         computed: {
 
-            //検索 + ソート
+            //検索
             searchDevices(){
-                let devices = this.$store.state.device.full.filter(device => {
-                    return device.device_name.includes(this.$store.state.device.keyword)
+                return this.$store.state.full.full.filter(full => {
+                    return full.device_name.includes(this.$store.state.full.keyword)
                 })
-                switch(this.$store.state.device.sort){
-                    case 0:
-                        return devices
-                    case 1:
-                        return devices.reverse()
-                    default:
-                        return ''
+            },
+
+            Full: {
+                get() {
+                    return this.$store.state.full.full
+                },
+                set(value) {
+                    this.$store.commit('full/updateFull', value)
+                }
+            },
+            
+            getOptions(){
+                return {
+                    delay:200,
+                    animation:300,
                 }
             },
             
         },
         created() {
             //取得
-            this.$store.dispatch('device/getFull')
+            if(this.$store.state.full.flag){
+                this.$store.dispatch('full/getFull')
+            }
         },
     }
 </script>
