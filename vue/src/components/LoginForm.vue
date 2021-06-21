@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-container>
+        <v-container class="container">
             <v-row class="row">
                 <v-col cols="12" md="6">
                     <v-card class="mx-auto mt-5">
@@ -79,9 +79,12 @@
 </script>
 
 <style scoped>
+    .container{
+        margin: auto;
+    }
     .row{
-        margin-top: 100px;
         display: flex;
         justify-content: center;
+        margin-bottom: 10%;
     }
 </style>
