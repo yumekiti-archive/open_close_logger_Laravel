@@ -16,10 +16,13 @@ class LogTableSeeder extends Seeder
         //
         for($i = 1; $i <= 10; $i++ ){
             if($i % 2){
-                factory(Log::class)->create(["status" => true, "device_id" => 1]);
+                factory(Log::class)->create(["status" => true,]);
             }else{
-                factory(Log::class)->create(["status" => false, "device_id" => 1]);
+                factory(Log::class)->create(["status" => false,]);
             }
+        }
+        for($i = 1; $i <= 5; $i++ ){
+            factory(Log::class)->create(["device_id" => $i]);
         }
 
     }

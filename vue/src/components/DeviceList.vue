@@ -8,7 +8,7 @@
                     <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                         <!-- アイコンだよ -->
-                        <v-icon v-if="device.type && device.logs[device.id]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
+                        <v-icon v-if="device.type && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
                         <v-icon v-else-if="device.type" class="card-icon">{{device.type.close_icon}}</v-icon>
                         <v-icon v-else class="card-icon">mdi-help</v-icon>
 

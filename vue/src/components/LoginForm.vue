@@ -61,16 +61,17 @@
                 data.append("email", this.email);
                 data.append("password", this.password);
                 
-                await axios.get('api/csrf-cookie')
-                await axios
-                .post("/api/login", data)
-                .then(() => {
-                    this.$router.push('/device');
-                    localStorage.setItem("auth", "ture");
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                    console.log(error);
+                await axios.get('api/csrf-cookie').then(() => {
+                    axios
+                    .post("/api/login", data)
+                    .then(() => {
+                        this.$router.go(this.$router.push('/device'));
+                        localStorage.setItem("auth", "ture");
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                        console.log(error);
+                    });
                 });
             }
         },

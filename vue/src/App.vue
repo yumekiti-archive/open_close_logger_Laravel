@@ -6,7 +6,7 @@
         <Header scroll-target="#scrolling" />
 
         <v-main id="scrolling">
-            <router-view/>
+            <router-view v-if="this.$store.state.user.auth || this.$route.path === '/login'" />
         </v-main>
         
     </v-app>
