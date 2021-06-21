@@ -1,24 +1,24 @@
 <template>
     <v-app>
-        <v-container>
+        <v-container v-if="this.$store.state.device.devices[0] && this.$store.state.type.types[0] && this.$store.state.log.logs[0]">
             <v-row class="card-row">
 
                 <v-col cols="12" md="7">
 
-                    <v-card class="detail" v-if="this.device && this.type">
-                        <v-card-title> {{device.device_name}} </v-card-title>
+                    <v-card class="detail">
+                        <v-card-title> {{this.$store.state.device.devices[0].device_name}} </v-card-title>
                         <v-card-text>
                             token：<br>
-                            {{device.token}}
+                            {{this.$store.state.device.devices[0].token}}
                         </v-card-text>
-                        <v-icon class="icon">{{this.$store.state.log.logs[this.$store.state.log.logs.length - 1].status ? this.type.open_icon : this.type.close_icon }}</v-icon>
-                        <v-card-text>種類：{{this.type.type_name}}</v-card-text>
-                        <v-card-text>cmd：{{this.type.cmd}}</v-card-text>
+                        <v-icon class="icon">{{this.$store.state.log.logs[this.$store.state.log.logs.length - 1].status ? this.$store.state.type.types[0].open_icon : this.$store.state.type.types[0].close_icon }}</v-icon>
+                        <v-card-text>種類：{{this.$store.state.type.types[0].type_name}}</v-card-text>
+                        <v-card-text>cmd：{{this.$store.state.type.types[0].cmd}}</v-card-text>
                     </v-card>
 
                 </v-col>
 
-                <v-col v-if="this.$store.state.log.logs" cols="12" md="5">
+                <v-col cols="12" md="5">
 
                     <v-card class="mb-5" v-for="log in this.$store.state.log.logs.slice().reverse()" :key="log.id">
                         <v-card-title> {{log.created_at}} </v-card-title>
@@ -38,14 +38,6 @@
         data:()=>({
             showToken: false,
         }),
-        computed:{
-            device(){
-                return this.$store.state.device.devices[0]
-            },
-            type(){
-                return this.$store.state.type.types[0]
-            },
-        },
         created() {
             //取得
             this.$store.dispatch('device/getDevices', this.$route.query.id)
