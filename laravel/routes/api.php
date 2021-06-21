@@ -29,4 +29,5 @@ Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sa
 Route::get('/device-logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
 
 //type
-Route::get('/types/{device_id}', 'TypeController@show')->middleware('auth:sanctum');
+Route::get('/types', 'TypeController@show')->middleware('auth:sanctum');
+Route::get('/types/{device_id}', 'TypeController@only')->middleware('auth:sanctum');

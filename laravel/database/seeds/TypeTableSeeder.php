@@ -12,13 +12,18 @@ class TypeTableSeeder extends Seeder
     public function run()
     {
         //
-        for($i = 1; $i <= 5; $i++ ){
+
+        $names = ['鍵', 'ドア', '窓', 'hoge', 'piyo'];
+
+        $i = 1;
+
+        foreach ($names as $name) {
             DB::table('types')->insert([
-                "type_name" => "鍵",
+                "type_name" => $name,
                 "open_icon" => "mdi-lock-open-variant-outline",
                 "close_icon" => "mdi-lock-outline",
                 "cmd" => "ls -a",
-                "device_id" => $i,
+                "device_id" => $i++,
             ]);
         }
         

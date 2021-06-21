@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Header from '@/components/Header.vue'
+    import Header from '@/components/SearchHeader.vue'
     import Navigation from '@/components/Navigation.vue'
 
     export default {

@@ -3,7 +3,7 @@
         <v-container class="list-container">
 
                 <draggable class="row drag" v-model="Full" handle=".card" v-bind="getOptions">
-                    <v-col class="list-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
+                    <v-col class="list-col" cols="6" sm="3" xl="2" v-for="device in searchDevices" :key="device.id">
 
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
@@ -16,7 +16,7 @@
                             <v-card-title> {{device.device_name}} </v-card-title>
 
                             <!--サブタイトルだよ-->
-                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[device.id]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
 
                         </v-card>
 
@@ -24,19 +24,16 @@
                 </draggable>
 
         </v-container>
-        <Fab />
     </v-app>
 </template>
 
 <script>
     import draggable from 'vuedraggable'
-    import Fab from '@/components/Fab.vue'
 
     export default {
         name: 'Device',
         components: {
             draggable,
-            Fab,
         },
         computed: {
 

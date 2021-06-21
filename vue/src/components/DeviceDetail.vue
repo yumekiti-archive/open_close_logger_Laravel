@@ -42,7 +42,7 @@
             //取得
             this.$store.dispatch('device/getDevices', this.$route.query.id)
             this.$store.dispatch('log/getLogs', this.$route.query.id)
-            this.$store.dispatch('type/getTypes', this.$route.query.id)
+            this.$store.dispatch('type/getType', this.$route.query.id)
         },
     }
 </script>

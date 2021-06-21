@@ -13,7 +13,7 @@ export default {
     getters:{
     },
     actions: {
-        async getTypes({ commit }, id){
+        async getType({ commit }, id){
             await axios
             .get('/api/types/' + id)
             .then( response =>{
@@ -22,6 +22,16 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-        }
+        },
+        async getTypes({ commit }){
+            await axios
+            .get('/api/types/')
+            .then( response =>{
+                commit('setTypes', response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
     },
 }

@@ -13,6 +13,8 @@
 
         <v-spacer></v-spacer>
 
+        <DeviceListHeader v-if="this.$route.path === '/device'" />
+
         <v-checkbox
         v-model="collapseOnScroll"
         color="white"
@@ -23,8 +25,13 @@
 </template>
 
 <script>
+    import DeviceListHeader from '@/components/DeviceListHeader.vue'
+
     export default {
         name: 'Header',
+        components:{
+            DeviceListHeader
+        },
         data: () => ({
             collapseOnScroll: true,
         }),

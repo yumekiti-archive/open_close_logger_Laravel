@@ -9,7 +9,19 @@ use Illuminate\Support\Facades\Auth;
 class TypeController extends Controller
 {
     //
-    public function show($device_id)
+    public function show()
+    {
+        $devices = Auth::user()->
+        devices()->
+        firstOrFail()->
+        type()->
+        firstOrFail()->
+        get();
+
+        return response()->json($devices);
+    }
+
+    public function only($device_id)
     {
         $devices = Auth::user()->
         devices()->
