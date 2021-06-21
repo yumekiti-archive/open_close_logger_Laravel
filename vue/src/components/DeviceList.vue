@@ -1,35 +1,42 @@
 <template>
     <v-app>
-        <v-container>
-            <v-row>
+        <v-container class="list-container">
 
-                <v-col class="card-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
+                <draggable class="row drag" handle=".card" :options="{delay:200, animation:300}">
 
-                    <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
+                    <v-col class="list-col" cols="6" sm="3" v-for="device in searchDevices" :key="device.id">
 
-                        <!-- アイコンだよ -->
-                        <v-icon v-if="device.type && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
-                        <v-icon v-else-if="device.type" class="card-icon">{{device.type.close_icon}}</v-icon>
-                        <v-icon v-else class="card-icon">mdi-help</v-icon>
+                        <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
-                        <!--タイトルだよ-->
-                        <v-card-title> {{device.device_name}} </v-card-title>
+                            <!-- アイコンだよ -->
+                            <v-icon v-if="device.type && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
+                            <v-icon v-else-if="device.type" class="card-icon">{{device.type.close_icon}}</v-icon>
+                            <v-icon v-else class="card-icon">mdi-help</v-icon>
 
-                        <!--サブタイトルだよ-->
-                        <v-card-subtitle style="font-size: 20px;" v-if="device.logs[device.id]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <!--タイトルだよ-->
+                            <v-card-title> {{device.device_name}} </v-card-title>
 
-                    </v-card>
+                            <!--サブタイトルだよ-->
+                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[device.id]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
 
-                </v-col>
+                        </v-card>
 
-            </v-row>
+                    </v-col>
+
+                </draggable>
+
         </v-container>
     </v-app>
 </template>
 
 <script>
+    import draggable from 'vuedraggable'
+
     export default {
         name: 'Device',
+        components: {
+            draggable,
+        },
         computed: {
 
             //検索 + ソート
@@ -57,7 +64,17 @@
 
 <style scoped>
 
-    .card-col{
+    .list-container{
+        display: flex;
+        justify-content: center;
+    }
+
+    .drag{
+        width: 100%;
+        height: 100%;
+    }
+
+    .list-col{
         display: flex;
         justify-content: center;
     }
