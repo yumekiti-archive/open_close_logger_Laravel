@@ -8,7 +8,7 @@
             .post("/api/logout")
             .then(response => {
                 console.log(response);
-                localStorage.clear();
+                localStorage.removeItem("auth");
                 this.$router.go(this.$router.push("/login"));
             })
             .catch(error => {
