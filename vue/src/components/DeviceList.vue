@@ -40,7 +40,9 @@
             //検索
             searchDevices(){
                 return this.$store.state.full.full.filter(full => {
-                    return full.device_name.includes(this.$store.state.full.keyword)
+                    let key = full.device_name.includes(this.$store.state.full.keyword)
+                    key = full.type.type_name.includes(this.$store.state.full.keyword)
+                    return key
                 })
             },
 

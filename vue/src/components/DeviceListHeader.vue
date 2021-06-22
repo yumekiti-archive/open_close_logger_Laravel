@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-btn icon>
+        <v-btn @click="$store.state.search = !$store.state.search" icon>
             <v-icon>mdi-magnify</v-icon>
         </v-btn>
         <v-btn icon>

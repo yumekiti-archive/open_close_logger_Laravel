@@ -4,17 +4,22 @@
     >
         <v-toolbar-title>Search</v-toolbar-title>
         <v-autocomplete
-        v-model="select"
-        :items="items"
-        :search-input.sync="key"
-        cache-items
-        class="mx-4"
-        flat
-        hide-no-data
-        hide-details
-        label="What is the device's name?"
-        solo-inverted
+            v-model="select"
+            :items="getItem"
+            :search-input.sync="key"
+            cache-items
+            class="mx-4"
+            flat
+            hide-no-data
+            hide-details
+            label="What is the device's name?"
+            solo-inverted
         ></v-autocomplete>
+        
+        <v-btn @click="close" icon>
+            <v-icon>mdi-close</v-icon>
+        </v-btn>
+
     </v-toolbar>
 </template>
 
@@ -24,28 +29,32 @@
         data: () => ({
             key: '',
             select: '',
-            items: [],
+            readFlag: false,
         }),
-        mathods:{
+        methods:{
+            close(){
+                this.$store.state.search = !this.$store.state.search
+                this.$store.state.full.keyword = ''
+            }
+        },
+        computed:{
             getItem(){
+                let item = []
                 if(this.$store.state.type.types[0]){
                     for(let i in this.$store.state.type.types){
                         var type = this.$store.state.type.types[i].type_name;
-                        this.items[i] = type
+                        item[i] = type
                     }
                 }
+                return item
             }
         },
         created(){
             this.$store.dispatch('type/getTypes')
         },
         watch: {
-            key(){
-                this.$store.state.full.keyword = this.key
-                console.log(this.items)
-            },
-            items(){
-                this.getItem
+            key(){        
+                this.$store.state.full.keyword = this.key === null ? '' : this.key
             },
         },
     }
