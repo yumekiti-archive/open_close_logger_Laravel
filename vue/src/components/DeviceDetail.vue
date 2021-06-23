@@ -54,6 +54,7 @@
         margin-top: 10px;
     }
     .detail{
+        position: -webkit-sticky;
         position: sticky;
         top: 100px;
         overflow-x: hidden;

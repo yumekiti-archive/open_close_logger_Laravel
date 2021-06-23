@@ -41,7 +41,7 @@
             searchDevices(){
                 return this.$store.state.full.full.filter(full => {
                     let key = full.device_name.includes(this.$store.state.full.keyword)
-                    key = full.type.type_name.includes(this.$store.state.full.keyword)
+                    key += full.type.type_name.includes(this.$store.state.full.keyword)
                     return key
                 })
             },
