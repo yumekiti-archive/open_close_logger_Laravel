@@ -3,31 +3,31 @@ import axios from 'axios';
 export default {
     namespaced:true,
     state: {
-        types: [],
+        categories: [],
     },
     mutations: {
-        setTypes: (state, response) => {
-            state.types = response.data;
+        setCategories: (state, response) => {
+            state.categories = response.data;
         },
     },
     getters:{
     },
     actions: {
-        async getType({ commit }, id){
+        async getCategory({ commit }, id){
             await axios
-            .get('/api/types/' + id)
+            .get('/api/categories/' + id)
             .then( response =>{
-                commit('setTypes', response);
+                commit('setCategories', response);
             })
             .catch(error => {
                 console.log(error);
             });
         },
-        async getTypes({ commit }){
+        async getCategories({ commit }){
             await axios
-            .get('/api/types/')
+            .get('/api/categories/')
             .then( response =>{
-                commit('setTypes', response);
+                commit('setCategories', response);
             })
             .catch(error => {
                 console.log(error);

@@ -4,6 +4,7 @@ export default {
     namespaced:true,
     state: {
         devices: [],
+        addFlag: false,
     },
     mutations: {
         setDevices: (state, response) => {

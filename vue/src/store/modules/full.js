@@ -4,7 +4,6 @@ export default {
     namespaced:true,
     state: {
         full: [],
-        flag: true,
         //検索
         keyword: '',
         //ソート
@@ -13,15 +12,10 @@ export default {
     mutations: {
         setFull: (state, response) => {
             state.full = response.data;
-            var data = localStorage.getItem('full');
-            if(data){
-                state.full = JSON.parse(data);
-            }
-            state.flag = false;
         },
         updateFull:(state, value) => {
+            //ここでPOSTする
             state.full = value;
-            localStorage.setItem("full", JSON.stringify(value));
         },
     },
     getters:{

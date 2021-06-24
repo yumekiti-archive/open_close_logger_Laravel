@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
-class TypeController extends Controller
+class CategoryController extends Controller
 {
     //
     public function show()
@@ -14,7 +14,7 @@ class TypeController extends Controller
         $devices = Auth::user()->
         devices()->
         firstOrFail()->
-        type()->
+        categories()->
         firstOrFail()->
         get();
 
@@ -26,7 +26,7 @@ class TypeController extends Controller
         $devices = Auth::user()->
         devices()->
         firstOrFail()->
-        type()->
+        categories()->
         firstOrFail()->
         where('device_id', $device_id)->
         get();

@@ -14,6 +14,7 @@
         <v-spacer></v-spacer>
 
         <DeviceListHeader v-if="this.$route.path === '/device'" />
+        <DeviceDetailHeader v-if="this.$route.path === '/device/detail'" />
 
         <v-checkbox
         v-model="collapseOnScroll"
@@ -26,11 +27,13 @@
 
 <script>
     import DeviceListHeader from '@/components/DeviceListHeader.vue'
+    import DeviceDetailHeader from '@/components/DeviceDetailHeader.vue'
 
     export default {
         name: 'Header',
         components:{
-            DeviceListHeader
+            DeviceListHeader,
+            DeviceDetailHeader,
         },
         data: () => ({
             collapseOnScroll: true,

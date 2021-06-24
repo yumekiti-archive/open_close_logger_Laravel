@@ -3,7 +3,7 @@
         <v-btn @click="$store.state.search = !$store.state.search" icon>
             <v-icon>mdi-magnify</v-icon>
         </v-btn>
-        <v-btn icon>
+        <v-btn @click="$store.state.device.addFlag = !$store.state.device.addFlag" icon>
             <v-icon>mdi-plus</v-icon>
         </v-btn>
     </div>

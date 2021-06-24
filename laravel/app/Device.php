@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Type;
+use App\Category;
 use App\Log;
 use App\User;
 
@@ -16,9 +16,9 @@ class Device extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function type()
+    public function categories()
     {
-        return $this->hasOne(Type::class);
+        return $this->hasOne(Category::class);
     }
 
     public function logs()

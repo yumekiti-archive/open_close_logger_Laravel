@@ -2,14 +2,16 @@
     <v-app>
         <v-container class="list-container">
 
+            <DeviceAdd />
+
                 <draggable class="row drag" v-model="Full" handle=".card" v-bind="getOptions">
                     <v-col class="list-col" cols="6" sm="3" xl="2" v-for="device in searchDevices" :key="device.id">
 
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                             <!-- アイコンだよ -->
-                            <v-icon v-if="device.type && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.type.open_icon : device.type.close_icon}}</v-icon>
-                            <v-icon v-else-if="device.type" class="card-icon">{{device.type.close_icon}}</v-icon>
+                            <v-icon v-if="device.categories && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.categories.open_icon : device.categories.close_icon}}</v-icon>
+                            <v-icon v-else-if="device.categories" class="card-icon">{{device.categories.close_icon}}</v-icon>
                             <v-icon v-else class="card-icon">mdi-help</v-icon>
 
                             <!--タイトルだよ-->
@@ -29,11 +31,13 @@
 
 <script>
     import draggable from 'vuedraggable'
+    import DeviceAdd from '@/components/DeviceAdd'
 
     export default {
         name: 'Device',
         components: {
             draggable,
+            DeviceAdd,
         },
         computed: {
 
@@ -41,7 +45,7 @@
             searchDevices(){
                 return this.$store.state.full.full.filter(full => {
                     let key = full.device_name.includes(this.$store.state.full.keyword)
-                    key += full.type.type_name.includes(this.$store.state.full.keyword)
+                    key += full.categories.category_name.includes(this.$store.state.full.keyword)
                     return key
                 })
             },
@@ -65,9 +69,7 @@
         },
         created() {
             //取得
-            if(this.$store.state.full.flag){
-                this.$store.dispatch('full/getFull')
-            }
+            this.$store.dispatch('full/getFull')
         },
     }
 </script>

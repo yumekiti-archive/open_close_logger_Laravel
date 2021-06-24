@@ -28,6 +28,6 @@ Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sa
 //log
 Route::get('/device-logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
 
-//type
-Route::get('/types', 'TypeController@show')->middleware('auth:sanctum');
-Route::get('/types/{device_id}', 'TypeController@only')->middleware('auth:sanctum');
+//category
+Route::get('/categories', 'CategoryController@show')->middleware('auth:sanctum');
+Route::get('/categories/{device_id}', 'CategoryController@only')->middleware('auth:sanctum');

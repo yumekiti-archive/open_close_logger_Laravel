@@ -40,17 +40,17 @@
         computed:{
             getItem(){
                 let item = []
-                if(this.$store.state.type.types[0]){
-                    for(let i in this.$store.state.type.types){
-                        var type = this.$store.state.type.types[i].type_name;
-                        item[i] = type
+                if(this.$store.state.category.categories[0]){
+                    for(let i in this.$store.state.category.categories){
+                        var category = this.$store.state.category.categories[i].category_name;
+                        item[i] = category
                     }
                 }
                 return item
             }
         },
         created(){
-            this.$store.dispatch('type/getTypes')
+            this.$store.dispatch('category/getCategories')
         },
         watch: {
             key(){        

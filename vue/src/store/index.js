@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import device from '@/store/modules/device.js'
 import log from '@/store/modules/log.js'
-import type from '@/store/modules/type.js'
+import category from '@/store/modules/category.js'
 import user from '@/store/modules/user.js'
 import full from '@/store/modules/full.js'
 
@@ -22,7 +22,7 @@ export default new Vuex.Store({
         user,
         device,
         log,
-        type,
+        category,
         full,
     }
 })
