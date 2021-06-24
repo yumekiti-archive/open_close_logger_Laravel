@@ -15,7 +15,9 @@
                         <v-icon v-else-if="this.$store.state.category.categories[0]" class="icon">{{this.$store.state.category.categories[0].close_icon}}</v-icon>
                         <v-icon v-else class="icon">mdi-help</v-icon>
                         <v-card-text v-if="this.$store.state.category.categories[0]">Category：{{this.$store.state.category.categories[0].category_name}}</v-card-text>
+                        <v-card-text v-else>Category：Notset</v-card-text>
                         <v-card-text v-if="this.$store.state.category.categories[0]">cmd：{{this.$store.state.category.categories[0].cmd}}</v-card-text>
+                        <v-card-text v-else>cmd：Notset</v-card-text>
                     </v-card>
 
                 </v-col>
@@ -31,6 +33,7 @@
 
             </v-row>
         </v-container>
+        {{this.$store.state.category.categories}}
     </v-app>
 </template>
 

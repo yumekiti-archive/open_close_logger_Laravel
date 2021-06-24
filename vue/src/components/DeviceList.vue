@@ -10,8 +10,8 @@
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                             <!-- アイコンだよ -->
-                            <v-icon v-if="device.categories && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.categories.open_icon : device.categories.close_icon}}</v-icon>
-                            <v-icon v-else-if="device.categories" class="card-icon">{{device.categories.close_icon}}</v-icon>
+                            <v-icon v-if="device.categories[0] && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.categories[0].open_icon : device.categories[0].close_icon}}</v-icon>
+                            <v-icon v-else-if="device.categories[0]" class="card-icon">{{device.categories[0].close_icon}}</v-icon>
                             <v-icon v-else class="card-icon">mdi-help</v-icon>
 
                             <!--タイトルだよ-->
@@ -45,8 +45,10 @@
             searchDevices(){
                 return this.$store.state.full.full.filter(full => {
                     let key = full.device_name.includes(this.$store.state.full.keyword)
-                    if(full.categories != null){
-                        key += full.categories.category_name.includes(this.$store.state.full.keyword)
+                    for(let i in full.categories){
+                        if(full.categories[i] != null){
+                            key += full.categories[i].category_name.includes(this.$store.state.full.keyword)
+                        }
                     }
                     return key
                 })

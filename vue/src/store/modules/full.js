@@ -23,7 +23,7 @@ export default {
     actions: {
         async getFull({ commit }){
             await axios
-            .get('/api/devices/')
+            .get('/api/devices')
             .then( response =>{
                 commit('setFull', response);
             })

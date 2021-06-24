@@ -19,9 +19,9 @@ class CreateCategoriesTable extends Migration
 
             //種類
             $table->string('category_name', 30);
-            $table->string('open_icon', 50);
-            $table->string('close_icon', 50);
-            $table->string('cmd', 100);
+            $table->string('open_icon', 50)->nullable()->default(null);
+            $table->string('close_icon', 50)->nullable()->default(null);
+            $table->string('cmd', 100)->nullable()->default(null);
 
             //外部キー制約
             $table->unsignedBigInteger('device_id')->index();

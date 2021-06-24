@@ -58,10 +58,13 @@
             itemAdd() {
                 axios
                 .post("/api/devices", {
-                    "device_name": this.name
+                    "device_name": this.name,
+                    "id": this.category,
+                    "category_name": this.$store.state.category.categories[this.category - 1].category_name,
                 })
                 .then(() => {
                     this.$store.dispatch('full/getFull')
+                    console.log(this.$store.state.category.categories[this.category].category_name)
                     this.$store.state.device.addFlag = false;
                 })
                 .catch(error => {

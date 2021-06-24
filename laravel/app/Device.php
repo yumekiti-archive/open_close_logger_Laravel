@@ -10,7 +10,7 @@ use App\User;
 
 class Device extends Model
 {
-    protected $fillable = ['device_name'];
+    protected $fillable = ['device_name','token'];
     //
     public function user()
     {
@@ -19,7 +19,7 @@ class Device extends Model
     
     public function categories()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasMany(Category::class);
     }
 
     public function logs()
