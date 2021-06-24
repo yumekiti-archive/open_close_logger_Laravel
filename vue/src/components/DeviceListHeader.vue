@@ -4,7 +4,7 @@
             <v-icon>mdi-magnify</v-icon>
         </v-btn>
         <v-btn @click="$store.state.device.addFlag = !$store.state.device.addFlag" icon>
-            <v-icon>mdi-plus</v-icon>
+            <v-icon>mdi-access-point-plus</v-icon>
         </v-btn>
     </div>
 </template>

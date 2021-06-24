@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-container v-if="this.$store.state.device.devices[0] && this.$store.state.category.categories[0] && this.$store.state.log.logs[0]">
+        <v-container v-if="this.$store.state.device.devices[0]">
             <v-row class="card-row">
 
                 <v-col cols="12" md="7">
@@ -11,9 +11,11 @@
                             Token：<br>
                             {{this.$store.state.device.devices[0].token}}
                         </v-card-text>
-                        <v-icon class="icon">{{this.$store.state.log.logs[this.$store.state.log.logs.length - 1].status ? this.$store.state.category.categories[0].open_icon : this.$store.state.category.categories[0].close_icon }}</v-icon>
-                        <v-card-text>Category：{{this.$store.state.category.categories[0].category_name}}</v-card-text>
-                        <v-card-text>cmd：{{this.$store.state.category.categories[0].cmd}}</v-card-text>
+                        <v-icon v-if="this.$store.state.log.logs[0]" class="icon">{{this.$store.state.log.logs[this.$store.state.log.logs.length - 1].status ? this.$store.state.category.categories[0].open_icon : this.$store.state.category.categories[0].close_icon }}</v-icon>
+                        <v-icon v-else-if="this.$store.state.category.categories[0]" class="icon">{{this.$store.state.category.categories[0].close_icon}}</v-icon>
+                        <v-icon v-else class="icon">mdi-help</v-icon>
+                        <v-card-text v-if="this.$store.state.category.categories[0]">Category：{{this.$store.state.category.categories[0].category_name}}</v-card-text>
+                        <v-card-text v-if="this.$store.state.category.categories[0]">cmd：{{this.$store.state.category.categories[0].cmd}}</v-card-text>
                     </v-card>
 
                 </v-col>

@@ -10,6 +10,7 @@ use App\User;
 
 class Device extends Model
 {
+    protected $fillable = ['device_name'];
     //
     public function user()
     {

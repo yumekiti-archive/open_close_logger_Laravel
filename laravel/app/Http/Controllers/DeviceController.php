@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DeviceController extends Controller
 {
@@ -21,6 +22,16 @@ class DeviceController extends Controller
         $devices = Auth::user()->devices()->firstOrFail()->where('id', $device_id)->get();
 
         return response()->json($devices);
+    }
+
+    public function create(Request $req)
+    {
+        $token = hash('sha256', Str::random(10));
+
+        $devices = Auth::user()->devices()->create([
+            'device_name' => $req->input('device_name'),
+            'token' => $token,
+        ]);
     }
 
 }

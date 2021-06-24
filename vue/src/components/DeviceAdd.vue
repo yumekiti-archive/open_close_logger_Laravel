@@ -19,14 +19,13 @@
                             
                             <v-row justify="center">
                                 <v-spacer>
-                                    <v-text-field label="Name" prepend-icon="mdi-briefcase" v-model="name" />
+                                    <v-text-field label="Name" prepend-icon="mdi-access-point" v-model="name" />
                                 </v-spacer>
                             </v-row>
 
                             <v-row justify="center">
                                 <v-spacer class="mx-auto">
-                                    <v-select label="Category" v-model="category" />
-                                    <!-- <v-select label="カテゴリー" v-model=" " item-text="name" item-value="id" :items="this.$store.state.box.boxes" /> -->
+                                    <v-select label="Category" prepend-icon="mdi-label-outline" v-model="category" item-text="category_name" item-value="id" :items="this.$store.state.category.categories" />
                                 </v-spacer>
                             </v-row>
 
@@ -35,7 +34,7 @@
 
                     <v-card-actions>
                         <v-container>
-                            <v-btn block dark>ADD</v-btn>
+                            <v-btn @click="itemAdd" block dark>ADD</v-btn>
                         </v-container>
                     </v-card-actions>
 
@@ -52,27 +51,26 @@
     export default {
         name: 'DeviceAdd',
         data: () => ({
-            dialog: false,
             name: '',
             category: null,
         }),
         methods:{
             itemAdd() {
-                let data = new FormData();
-                data.append("name", this.name);
-                data.append("category_id", this.categoryId);
                 axios
-                .post("/api/items", {
-                    "name": this.name
+                .post("/api/devices", {
+                    "device_name": this.name
                 })
                 .then(() => {
-                    this.$store.dispatch('item/getItems')
+                    this.$store.dispatch('full/getFull')
                     this.$store.state.device.addFlag = false;
                 })
                 .catch(error => {
                     console.log(error);
                 });
             },
+        },
+        created(){
+            this.$store.dispatch('category/getCategories')
         },
     }
 </script>

@@ -19,7 +19,7 @@ class CreateDevicesTable extends Migration
             $table->timestamps();
 
             //ユニークでかぶりなしのトークン
-            $table->string('token', 100)->unique();
+            $table->string('token', 100)->nullable()->default(null)->unique();
             $table->string('device_name', 30);
 
             //外部キー制約
