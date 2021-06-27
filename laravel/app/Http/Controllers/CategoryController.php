@@ -23,14 +23,25 @@ class CategoryController extends Controller
 
     public function only($device_id)
     {
-        $devices = Auth::user()->
+        $data[] = null;
+        $i = 0;
+
+        $categories = Auth::user()->
         devices()->
         firstOrFail()->
         categories()->
-        firstOrFail()->
+        firstOrFail();
+
+        $pivots = $categories->
+        pivot->
         where('device_id', $device_id)->
         get();
 
-        return response()->json($devices);
+        foreach($pivots as $pivot){
+            $data[$i] = $categories->where('id', $pivot->category_id)->get()[0];
+            $i++;
+        }
+
+        return response()->json($data);
     }
 }

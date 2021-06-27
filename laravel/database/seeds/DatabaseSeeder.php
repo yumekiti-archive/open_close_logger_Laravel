@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DeviceTableSeeder::class);
         $this->call(LogTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
+        $this->call(DeviceCategoryChainTableSeeder::class);
     }
 }

@@ -17,12 +17,14 @@
                     <v-card-text>
                         <v-container>
                             
+                            <!-- 名前入力欄 -->
                             <v-row justify="center">
                                 <v-spacer>
                                     <v-text-field label="Name" prepend-icon="mdi-access-point" v-model="name" />
                                 </v-spacer>
                             </v-row>
 
+                            <!-- カテゴリー入力欄 -->
                             <v-row justify="center">
                                 <v-spacer class="mx-auto">
                                     <v-select label="Category" prepend-icon="mdi-label-outline" v-model="category" item-text="category_name" item-value="id" :items="this.$store.state.category.categories" />
@@ -60,11 +62,9 @@
                 .post("/api/devices", {
                     "device_name": this.name,
                     "id": this.category,
-                    "category_name": this.$store.state.category.categories[this.category - 1].category_name,
                 })
                 .then(() => {
                     this.$store.dispatch('full/getFull')
-                    console.log(this.$store.state.category.categories[this.category].category_name)
                     this.$store.state.device.addFlag = false;
                 })
                 .catch(error => {

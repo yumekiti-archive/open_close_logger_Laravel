@@ -1,30 +1,31 @@
 <template>
     <v-app>
-        <v-container v-if="this.$store.state.device.devices[0]">
+        <v-container v-if="device && category">
             <v-row class="card-row">
 
                 <v-col cols="12" md="7">
 
                     <v-card class="detail">
-                        <v-card-title> {{this.$store.state.device.devices[0].device_name}} </v-card-title>
+                        <!-- デバイス詳細だお -->
+                        <v-card-title> {{device.device_name}} </v-card-title>
                         <v-card-text>
                             Token：<br>
-                            {{this.$store.state.device.devices[0].token}}
+                            {{device.token}}
                         </v-card-text>
-                        <v-icon v-if="this.$store.state.log.logs[0]" class="icon">{{this.$store.state.log.logs[this.$store.state.log.logs.length - 1].status ? this.$store.state.category.categories[0].open_icon : this.$store.state.category.categories[0].close_icon }}</v-icon>
-                        <v-icon v-else-if="this.$store.state.category.categories[0]" class="icon">{{this.$store.state.category.categories[0].close_icon}}</v-icon>
+                        <!-- カテゴリー情報だお -->
+                        <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].status ? category.open_icon : category.close_icon }}</v-icon>
+                        <v-icon v-else-if="log[0] == null && category" class="icon">{{category.close_icon}}</v-icon>
                         <v-icon v-else class="icon">mdi-help</v-icon>
-                        <v-card-text v-if="this.$store.state.category.categories[0]">Category：{{this.$store.state.category.categories[0].category_name}}</v-card-text>
+                        <v-card-text v-if="category">Category：{{category.category_name}}</v-card-text>
                         <v-card-text v-else>Category：Notset</v-card-text>
-                        <v-card-text v-if="this.$store.state.category.categories[0]">cmd：{{this.$store.state.category.categories[0].cmd}}</v-card-text>
-                        <v-card-text v-else>cmd：Notset</v-card-text>
                     </v-card>
 
                 </v-col>
 
                 <v-col cols="12" md="5">
 
-                    <v-card class="mb-5" v-for="log in this.$store.state.log.logs.slice().reverse()" :key="log.id">
+                    <!-- ログ情報だお -->
+                    <v-card class="mb-5" v-for="log in log.slice().reverse()" :key="log.id">
                         <v-card-title> {{log.created_at}} </v-card-title>
                         <v-card-text> {{log.status ? "OPEN" : "CLOSE" }} </v-card-text>
                     </v-card>
@@ -33,7 +34,6 @@
 
             </v-row>
         </v-container>
-        {{this.$store.state.category.categories}}
     </v-app>
 </template>
 
@@ -43,6 +43,21 @@
         data:()=>({
             showToken: false,
         }),
+        computed: {
+
+            device(){
+                return this.$store.state.device.devices[0]
+            },
+            
+            log(){
+                return this.$store.state.log.logs
+            },
+
+            category(){
+                return this.$store.state.category.categories[0]
+            },
+            
+        },
         created() {
             //取得
             this.$store.dispatch('device/getDevices', this.$route.query.id)

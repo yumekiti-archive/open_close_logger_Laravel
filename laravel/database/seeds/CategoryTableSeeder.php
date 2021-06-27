@@ -22,8 +22,6 @@ class CategoryTableSeeder extends Seeder
                 "category_name" => $name,
                 "open_icon" => "mdi-lock-open-variant-outline",
                 "close_icon" => "mdi-lock-outline",
-                "cmd" => "ls -a",
-                "device_id" => $i++,
             ]);
         }
         

@@ -1,9 +1,8 @@
 <template>
     <v-navigation-drawer
     v-model="$store.state.nav"
-    app
-    left
     temporary
+    app
     >
     <!-- appで固定 -->
         <v-list>
@@ -29,11 +28,5 @@
                 { title: "Logout", icon: "mdi-logout", url: "/logout" },
             ]
         }),
-
-        watch: {
-            group () {
-                this.$store.state.nav = false
-            },
-        },
     }
 </script>

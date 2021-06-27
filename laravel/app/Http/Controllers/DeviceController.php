@@ -31,31 +31,19 @@ class DeviceController extends Controller
         $name = $req->input('device_name');
         $token = hash('sha512', $name . Str::random(10));
 
-        $device = Auth::user()->devices()->create([
+        $devices = Auth::user()->devices();
+
+        $data = $devices->create([
             'device_name' => $name,
             'token' => $token,
         ]);
         
-        $devices = Auth::user()->devices();
-        
-        $data = $devices->
-        firstOrFail()->
+        $data->
         categories()->
-        firstOrFail()->
-        where('id', $req->input('id'));
+        sync([
+            'category_id' => $req->input('id'),
+        ]);
 
-        return $data->get('open_icon');
-        
-        // $devices->
-        // findOrFail($device->id)->
-        // categories()->
-        // create([
-        //     'category_name' => $req->input('category_name'),
-        //     'open_icon' => $data->get('open_icon'),
-        //     'close_icon' => $data->get('close_icon'),
-        //     'cmd' => $data->get('cmd'),
-        //     'device_id' => $device->id,
-        // ]);
     }
 
 }
