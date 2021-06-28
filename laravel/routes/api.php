@@ -33,3 +33,4 @@ Route::post('/logs', 'LogController@log');
 //category
 Route::get('/categories', 'CategoryController@show')->middleware('auth:sanctum');
 Route::get('/categories/{device_id}', 'CategoryController@only')->middleware('auth:sanctum');
+Route::post('/categories/{device_id}', 'CategoryController@add')->middleware('auth:sanctum');

@@ -44,4 +44,23 @@ class CategoryController extends Controller
 
         return response()->json($data);
     }
+
+    public function add(Request $req, $device_id)
+    {
+        $ids = $req->input('id');
+
+        if($ids){
+            $categories = Auth::user()->
+            devices()->
+            findOrFail($device_id)->
+            categories();
+            
+            foreach($ids as $id){
+                $categories->syncWithoutDetaching([
+                    'category_id' => $id,
+                ]);
+            }
+        }
+    }
+
 }

@@ -74,11 +74,11 @@
         methods:{
             itemAdd() {
                 axios
-                .post("/api/categories", {
+                .post("/api/categories/" + this.$route.query.id, {
                     "id": this.id,
                 })
                 .then(() => {
-                    this.$store.dispatch('category/getCategories')
+                    this.$store.dispatch('category/getCategory', this.$route.query.id)
                     this.$store.state.category.addFlag = false;
                 })
                 .catch(error => {
