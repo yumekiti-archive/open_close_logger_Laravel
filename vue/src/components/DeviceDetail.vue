@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <CategoryAdd v-if="$store.state.device.addFlag"/>
+        <CategoryAdd v-if="$store.state.category.addFlag"/>
         <v-container v-if="device && category[0]">
             <v-row class="card-row">
 

@@ -18,8 +18,8 @@
                         <v-container>
 
                             <!-- カテゴリー入力欄 -->
-                            <v-row justify="center">
-                                <v-select v-model="id" item-text="category_name" item-value="id" :items="category" chips label="Category" multiple ></v-select>
+                            <v-row justify="center" v-if="this.category">
+                                <v-select v-model="id" item-text="category_name" item-value="id" :items="this.category" chips label="Category" multiple ></v-select>
                             </v-row>
 
                         </v-container>
@@ -27,7 +27,7 @@
 
                     <v-card-actions>
                         <v-container>
-                            <v-btn @click="itemAdd" block dark>ADD</v-btn>
+                            <v-btn @click="categoryAdd" block dark>ADD</v-btn>
                         </v-container>
                     </v-card-actions>
 
@@ -49,6 +49,7 @@
         computed: {
             category(){
                 let data = [null]
+                data = []
 
                 let array1 = [null]
                 let array2 = [null]
@@ -63,7 +64,7 @@
                 let array3 = array1.filter(i => array2.indexOf(i) == -1)
 
                 for(let i in array3){
-                    if(parseInt(array3[i])){
+                    if(parseInt(array3[i]) && parseInt(array3[i]) > 0){
                         data[i] = this.$store.state.category.categories[parseInt(--array3[i])]
                     }
                 }
@@ -72,7 +73,7 @@
             }
         },
         methods:{
-            itemAdd() {
+            categoryAdd() {
                 axios
                 .post("/api/categories/" + this.$route.query.id, {
                     "id": this.id,
@@ -88,6 +89,7 @@
         },
         created() {
             this.$store.dispatch('category/getCategories')
+            this.$store.dispatch('category/getCategory', this.$route.query.id)
         }
     }
 </script>
