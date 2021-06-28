@@ -16,7 +16,7 @@ class CreateDeviceCategoryChainsTable extends Migration
         Schema::create('device_category_chains', function (Blueprint $table) {
             //devices外部キー制約
             $table->unsignedBigInteger('device_id')->index();
-            $table->foreign('device_id')->references('id')->on('devices');
+            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
             
             //category外部キー制約
             $table->unsignedBigInteger('category_id')->index();

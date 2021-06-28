@@ -24,6 +24,7 @@ Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
 //device
 Route::get('/devices', 'DeviceController@full')->middleware('auth:sanctum');
 Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sanctum');
+Route::post('/devices/{device_id}', 'DeviceController@del')->middleware('auth:sanctum');
 Route::post('/devices', 'DeviceController@create')->middleware('auth:sanctum');
 
 //log

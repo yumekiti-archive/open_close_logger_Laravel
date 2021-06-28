@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <CategoryAdd />
+        <CategoryAdd v-if="$store.state.device.addFlag"/>
         <v-container v-if="device && category[0]">
             <v-row class="card-row">
 
@@ -8,7 +8,7 @@
 
                     <v-card class="detail">
                         <!-- デバイス詳細だお -->
-                        <v-card-title> {{device.device_name}} </v-card-title>
+                        <v-card-title @click="this.del"> {{device.device_name}} </v-card-title>
                         <v-card-text>
                             Token：<br>
                             {{device.token}}
@@ -40,6 +40,7 @@
 
 <script>
     import CategoryAdd from '@/components/CategoryAdd.vue'
+    import axios from 'axios'
 
     export default {
         name: 'DeviceDetail',
@@ -52,6 +53,16 @@
         methods:{
             categoryAdd(){
                 this.$store.state.category.addFlag = true
+            },
+            del(){
+                axios
+                .post("/api/devices/" + this.$route.query.id)
+                .then(() => {
+                    this.$router.go(this.$router.push('/device'));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             }
         },
         computed: {

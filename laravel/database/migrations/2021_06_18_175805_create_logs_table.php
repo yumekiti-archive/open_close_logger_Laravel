@@ -23,7 +23,7 @@ class CreateLogsTable extends Migration
 
             //外部キー制約
             $table->unsignedBigInteger('device_id')->index();
-            $table->foreign('device_id')->references('id')->on('devices');
+            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
         });
     }
 

@@ -2,7 +2,7 @@
     <v-app>
         <v-container class="list-container">
 
-            <DeviceAdd />
+            <DeviceAdd v-if="$store.state.device.addFlag" />
 
                 <draggable class="row drag" v-model="Full" handle=".card" v-bind="getOptions">
                     <v-col class="list-col" cols="6" sm="3" xl="2" v-for="device in searchDevices" :key="device.id">

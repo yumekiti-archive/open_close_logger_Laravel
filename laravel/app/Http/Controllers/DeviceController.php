@@ -43,7 +43,11 @@ class DeviceController extends Controller
         sync([
             'category_id' => $req->input('id'),
         ]);
+    }
 
+    public function del($device_id)
+    {
+        Auth::user()->devices()->findOrFail($device_id)->delete();
     }
 
 }
