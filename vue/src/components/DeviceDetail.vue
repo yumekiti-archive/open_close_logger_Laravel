@@ -8,7 +8,14 @@
 
                     <v-card class="detail">
                         <!-- デバイス詳細だお -->
-                        <v-card-title @click="this.del"> {{device.device_name}} </v-card-title>
+                        <v-card-title>
+                            <longpress
+                            duration="3"
+                            :on-confirm="this.del"
+                            pressing-text="Delete in {$rcounter} second"
+                            action-text="Deleting…">{{device.device_name}}
+                            </longpress>
+                        </v-card-title>
                         <v-card-text>
                             Token：<br>
                             {{device.token}}
@@ -41,11 +48,13 @@
 <script>
     import CategoryAdd from '@/components/CategoryAdd.vue'
     import axios from 'axios'
+    import Longpress from 'vue-longpress';
 
     export default {
         name: 'DeviceDetail',
         components: {
             CategoryAdd,
+            Longpress,
         },
         data:()=>({
             showToken: false,
