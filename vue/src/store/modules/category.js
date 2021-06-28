@@ -4,10 +4,15 @@ export default {
     namespaced:true,
     state: {
         categories: [],
+        category: [],
+        addFlag: false,
     },
     mutations: {
         setCategories: (state, response) => {
             state.categories = response.data;
+        },
+        setCategory: (state, response) => {
+            state.category = response.data;
         },
     },
     getters:{
@@ -17,7 +22,7 @@ export default {
             await axios
             .get('/api/categories/' + id)
             .then( response =>{
-                commit('setCategories', response);
+                commit('setCategory', response);
             })
             .catch(error => {
                 console.log(error);

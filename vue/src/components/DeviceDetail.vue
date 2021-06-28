@@ -1,6 +1,7 @@
 <template>
     <v-app>
-        <v-container v-if="device && category">
+        <CategoryAdd />
+        <v-container v-if="device && category[0]">
             <v-row class="card-row">
 
                 <v-col cols="12" md="7">
@@ -13,10 +14,10 @@
                             {{device.token}}
                         </v-card-text>
                         <!-- カテゴリー情報だお -->
-                        <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].status ? category.open_icon : category.close_icon }}</v-icon>
-                        <v-icon v-else-if="log[0] == null && category" class="icon">{{category.close_icon}}</v-icon>
+                        <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].state ? category[0].open_icon : category[0].close_icon }}</v-icon>
+                        <v-icon v-else-if="log[0] == null && category[0]" class="icon">{{category[0].close_icon}}</v-icon>
                         <v-icon v-else class="icon">mdi-help</v-icon>
-                        <v-card-text v-if="category">Category：{{category.category_name}}</v-card-text>
+                        <v-card-text v-if="category[0]"> <v-btn rounded small @click="categoryAdd">Category</v-btn>： <v-chip class="mx-1" v-for="cate in category" :key="cate.id">{{ cate.category_name }}</v-chip> </v-card-text>
                         <v-card-text v-else>Category：Notset</v-card-text>
                     </v-card>
 
@@ -38,11 +39,21 @@
 </template>
 
 <script>
+    import CategoryAdd from '@/components/CategoryAdd.vue'
+
     export default {
         name: 'DeviceDetail',
+        components: {
+            CategoryAdd,
+        },
         data:()=>({
             showToken: false,
         }),
+        methods:{
+            categoryAdd(){
+                this.$store.state.category.addFlag = true
+            }
+        },
         computed: {
 
             device(){
@@ -54,7 +65,7 @@
             },
 
             category(){
-                return this.$store.state.category.categories[0]
+                return this.$store.state.category.category
             },
             
         },
