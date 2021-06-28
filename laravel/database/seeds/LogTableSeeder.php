@@ -16,9 +16,9 @@ class LogTableSeeder extends Seeder
         //
         for($i = 1; $i <= 10; $i++ ){
             if($i % 2){
-                factory(Log::class)->create(["status" => true,]);
+                factory(Log::class)->create(["state" => true,]);
             }else{
-                factory(Log::class)->create(["status" => false,]);
+                factory(Log::class)->create(["state" => false,]);
             }
         }
         for($i = 1; $i <= 5; $i++ ){

@@ -19,7 +19,7 @@ class CreateLogsTable extends Migration
             $table->timestamps();
 
             //状態
-            $table->boolean('status');
+            $table->boolean('state');
 
             //外部キー制約
             $table->unsignedBigInteger('device_id')->index();

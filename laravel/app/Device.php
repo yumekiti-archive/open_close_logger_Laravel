@@ -12,6 +12,7 @@ use App\DeviceCategoryChain;
 class Device extends Model
 {
     protected $fillable = ['device_name','token'];
+    
     //
     public function user()
     {
@@ -26,6 +27,19 @@ class Device extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class,'device_category_chains','device_id','category_id');
+    }
+
+    public function open()
+    {
+        return $this->logs()->create(['state' => true]);
+
+
+    }
+
+    public function close()
+    {
+        return $this->logs()->create(['state' => false]);
+
     }
 
 }

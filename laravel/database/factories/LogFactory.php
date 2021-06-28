@@ -11,7 +11,7 @@ $factory->define(Log::class, function (Faker $faker) {
         //
         'created_at' => new DateTime(),
         'updated_at' => new DateTime(),
-        "status" => $this->faker->boolean(),
+        "state" => $this->faker->boolean(),
         "device_id" => 1
     ];
 });

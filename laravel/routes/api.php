@@ -27,7 +27,8 @@ Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sa
 Route::post('/devices', 'DeviceController@create')->middleware('auth:sanctum');
 
 //log
-Route::get('/device-logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
+Route::get('/logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
+Route::post('/logs', 'LogController@log');
 
 //category
 Route::get('/categories', 'CategoryController@show')->middleware('auth:sanctum');

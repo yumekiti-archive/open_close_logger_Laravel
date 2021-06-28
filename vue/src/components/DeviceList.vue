@@ -10,7 +10,7 @@
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                             <!-- アイコンだよ -->
-                            <v-icon v-if="device.categories[0] && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].status ? device.categories[0].open_icon : device.categories[0].close_icon}}</v-icon>
+                            <v-icon v-if="device.categories[0] && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].state ? device.categories[0].open_icon : device.categories[0].close_icon}}</v-icon>
                             <v-icon v-else-if="device.categories[0]" class="card-icon">{{device.categories[0].close_icon}}</v-icon>
                             <v-icon v-else class="card-icon">mdi-help</v-icon>
 
@@ -18,7 +18,7 @@
                             <v-card-title> {{device.device_name}} </v-card-title>
 
                             <!--サブタイトルだよ-->
-                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].status ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].state ? "OPEN" : "CLOSE"}} </v-card-subtitle>
 
                         </v-card>
 

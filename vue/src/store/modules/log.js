@@ -15,7 +15,7 @@ export default {
     actions: {
         async getLogs({ commit }, id){
             await axios
-            .get('/api/device-logs/' + id)
+            .get('/api/logs/' + id)
             .then( response =>{
                 commit('setLogs', response);
             })

@@ -27,7 +27,7 @@
                     <!-- ログ情報だお -->
                     <v-card class="mb-5" v-for="log in log.slice().reverse()" :key="log.id">
                         <v-card-title> {{log.created_at}} </v-card-title>
-                        <v-card-text> {{log.status ? "OPEN" : "CLOSE" }} </v-card-text>
+                        <v-card-text> {{log.state ? "OPEN" : "CLOSE" }} </v-card-text>
                     </v-card>
 
                 </v-col>
@@ -78,6 +78,7 @@
         position: sticky;
         top: 100px;
         overflow-x: hidden;
+        padding: 30px;
     }
     .icon{
         font-size: 300px;
