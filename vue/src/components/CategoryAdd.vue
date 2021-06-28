@@ -41,7 +41,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'DeviceAdd',
+        name: 'CategoryAdd',
         data: () => ({
             name: '',
             id: null,
