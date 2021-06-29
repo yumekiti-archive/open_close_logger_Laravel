@@ -43,3 +43,18 @@ services:
         stdin_open: true
         tty: true
         command: [sh, -c, npm install && npm run serve -- --port 8080]
+
+    # laravel echo
+    redis:
+        container_name: logger-redis
+        build: ./redis
+        ports:
+          - 6379:6379
+
+    laravel-echo-server:
+        container_name: logger-laravel-echo
+        build: ./laravel-echo
+        ports:
+          - 6001:6001
+        volumes:
+          - ./laravel-echo/:/work:cached
