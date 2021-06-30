@@ -15,10 +15,11 @@
                             <v-icon v-else class="card-icon">mdi-help</v-icon>
 
                             <!--タイトルだよ-->
-                            <v-card-title> {{device.device_name}} </v-card-title>
+                            <v-card-title class="card-title"> <span class="title">{{device.device_name}}</span> </v-card-title>
 
                             <!--サブタイトルだよ-->
                             <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].state ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <v-card-subtitle style="font-size: 20px;" v-else>Log：Notset</v-card-subtitle>
 
                         </v-card>
 
@@ -107,6 +108,17 @@
         margin-top: 30px;
         margin: 50px;
         font-size: 100px;
+    }
+
+    .card-title{
+        display: flex;
+        align-items: center;
+    }
+
+    .title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
 </style>
