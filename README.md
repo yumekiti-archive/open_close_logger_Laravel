@@ -1,7 +1,7 @@
 # open-close-logger
 
 
-## fast start
+## quick start
 
 Please enter this
 ```Bash
