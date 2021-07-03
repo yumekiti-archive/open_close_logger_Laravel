@@ -1,12 +1,15 @@
 {
-	"authHost": "http://localhost",
+	"authHost": "http://logger-nginx",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {},
+		"redis": {
+			"port": "6379",
+			"host": "logger-redis"
+		},
 		"sqlite": {
-			"databasePath": "/database/laravel-echo-server.sqlite"
+			"databasePath": "../../laravel/database/laravel-echo-server.sqlite"
 		}
 	},
 	"devMode": false,
