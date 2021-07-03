@@ -1,20 +1,15 @@
 {
-	"authHost": "http://logger-nginx",
+	"authHost": "http://localhost",
 	"authEndpoint": "/broadcasting/auth",
-	"clients": [
-
-	],
+	"clients": [],
 	"database": "redis",
 	"databaseConfig": {
-		"redis": {
-			"port": "6379",
-			"host": "logger-redis"
-		},
+		"redis": {},
 		"sqlite": {
-			"databasePath": "../../laravel/database/laravel-echo-server.sqlite"
+			"databasePath": "/database/laravel-echo-server.sqlite"
 		}
 	},
-	"devMode": true,
+	"devMode": false,
 	"host": null,
 	"port": "6001",
 	"protocol": "http",
@@ -29,9 +24,9 @@
 		"redis": true
 	},
 	"apiOriginAllow": {
-		"allowCors": true,
-		"allowOrigin": "http://logger-nginx",
-		"allowMethods": "GET, POST",
-		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
+		"allowCors": false,
+		"allowOrigin": "",
+		"allowMethods": "",
+		"allowHeaders": ""
 	}
 }
