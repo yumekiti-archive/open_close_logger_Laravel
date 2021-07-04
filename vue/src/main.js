@@ -25,7 +25,18 @@ window.Echo = new Echo({
 });
 
 window.Echo.channel('state-channel')
-.listen('StateEvent', (e) => {
-    console.log(e);
-    console.log('event vue log');
+.listen('StateEvent', () => {
+
+    // パラメタ取得
+    var url = new URL(window.location.href);
+    var params = url.searchParams;
+    var id = params.get('id');
+
+    // get log
+    if(id){
+        store.dispatch('log/getLogs', id)
+    }else{
+        store.dispatch('full/getFull')
+    }
+
 });
