@@ -61,7 +61,7 @@
                 data.append("email", this.email);
                 data.append("password", this.password);
                 
-                await axios.get('api/csrf-cookie').then(() => {
+                await axios.get('/api/csrf-cookie').then(() => {
                     axios
                     .post("/api/login", data)
                     .then(() => {
