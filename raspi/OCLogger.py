@@ -16,8 +16,16 @@ print("pin set:")
 pin = input()
 pinFlag = True
 
+print("https? y/n")
+ssl = input()
+
+if ssl == y:
+    ssl = "https"
+else
+    ssl = "http"
+
 # 以下URLが等しくない時変更 URL設定
-url = "https://" + ip + "/api/logs"
+url = ssl + "://" + ip + "/api/logs"
 
 # 変更内容ここまで
 
