@@ -37,6 +37,6 @@ class LogController extends Controller
             $log = $device->close();
         }
 
-        event(new StateEvent($log));
+        broadcast(new StateEvent($log));
     }
 }

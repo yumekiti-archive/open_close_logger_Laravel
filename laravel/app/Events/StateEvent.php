@@ -12,7 +12,8 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Log;
 
-class StateEvent
+//  implements ShouldBroadcast
+class StateEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
