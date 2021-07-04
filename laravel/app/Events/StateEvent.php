@@ -37,6 +37,6 @@ class StateEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('state-channel');
+        return new Channel('state-channel');
     }
 }
