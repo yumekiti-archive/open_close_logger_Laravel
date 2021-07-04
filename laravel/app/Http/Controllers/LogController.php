@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Device;
+use App\Events\StateEvent;
 
 class LogController extends Controller
 {
@@ -28,10 +29,14 @@ class LogController extends Controller
     {
         $device = Device::where('token', $req->input('token'))->firstOrFail();
 
+        $log = null;
+
         if($req->input('state')){
-            $device->open();
+            $log = $device->open();
         }else{
-            $device->close();
+            $log = $device->close();
         }
+
+        event(new StateEvent($log));
     }
 }
