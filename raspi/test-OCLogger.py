@@ -12,7 +12,7 @@ token = "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasda"
 pin = 26
 
 # 以下URLが等しくない時変更 URL設定
-url = "https://" + ip + "/api/logs"
+url = "http://" + ip + "/api/logs"
 
 headers = {
     'Accept': 'application/json',
