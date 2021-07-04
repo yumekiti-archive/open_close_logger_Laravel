@@ -23,4 +23,4 @@ pin = input()
 # 以下URLが等しくない時変更 URL設定
 url = ssl + "://" + ip + "/api/logs"
 
-os.system("sudo python3 /home/ubuntu/codes/open-close-logger/raspi/Multiple.py " + url + " " + token + " " + pin + " &")
+os.system("sudo python3 Multiple.py " + url + " " + token + " " + pin + " &")
