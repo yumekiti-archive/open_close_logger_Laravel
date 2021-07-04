@@ -27,4 +27,5 @@ window.Echo = new Echo({
 window.Echo.channel('state-channel')
 .listen('StateEvent', (e) => {
     console.log(e);
+    console.log('event vue log');
 });
