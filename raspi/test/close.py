@@ -4,7 +4,7 @@ import json
 url = "http://localhost:8080/api/logs"
 
 payload = json.dumps({
-  "token": "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasda",
+  "token": "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd",
   "state": False
 })
 headers = {

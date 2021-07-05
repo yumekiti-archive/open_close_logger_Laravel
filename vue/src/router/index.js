@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Device from '../views/Device.vue'
 import DeviceDetail from '../views/DeviceDetail.vue'
+import Category from '../views/Category.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/device/detail',
     name: 'DeviceDetail',
     component: DeviceDetail
+  },
+  {
+    path: '/category',
+    name: 'Category',
+    component: Category
   },
   {
     path: '/about',
