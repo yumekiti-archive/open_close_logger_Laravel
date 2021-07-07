@@ -8,8 +8,6 @@ import user from '@/store/modules/user.js'
 import full from '@/store/modules/full.js'
 import string from '@/store/modules/string.js'
 
-import axios from 'axios';
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,18 +20,6 @@ export default new Vuex.Store({
     actions: {
     },
     modules: {
-
-        async get(url){
-            await axios
-            .get('/api/' + url)
-            .then( response =>{
-                return response
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        },
-
         user,
         device,
         log,

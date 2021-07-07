@@ -3,7 +3,7 @@ export default {
     state: {
         en:{
             devicelist:{
-                test: "test",
+                subtitle: "Log：Notset",
             },
         }
     },

@@ -64,7 +64,7 @@
                     "id": this.category,
                 })
                 .then(() => {
-                    this.$store.dispatch('full/getFull')
+                    this.$store.dispatch('full/get')
                     this.$store.state.device.addFlag = false;
                 })
                 .catch(error => {

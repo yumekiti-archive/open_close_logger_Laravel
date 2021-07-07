@@ -18,11 +18,21 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $full = $user->with('devices', 'categories')->get();
+        $full = $user->findOrFail($user->id)->load('devices', 'categories');
 
-        $log = $user->logs()->get();
+        $logs = $user->
+        devices()->
+        firstOrFail()->
+        logs()->
+        firstOrFail()->
+        get();
 
-        return $full->with($log);
+        //状態取得
+        foreach($logs as $i => $log){
+            $state[$log->device_id] = $log->state;
+        }
+
+        return with(['full'=>$full, 'state'=>$state]);
     }
 
     public function login(LoginUserRequest $request)

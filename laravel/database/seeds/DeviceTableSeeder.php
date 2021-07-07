@@ -21,7 +21,9 @@ class DeviceTableSeeder extends Seeder
             "device_name" => "テストデバイス",
             "user_id" => 1
         ]);
-
+        
+        factory(Device::class, 4)->create();
+        
         DB::table('devices')->insert([
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
@@ -30,7 +32,6 @@ class DeviceTableSeeder extends Seeder
             "user_id" => 2
         ]);
 
-        factory(Device::class, 4)->create();
 
     }
 }

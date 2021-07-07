@@ -15,13 +15,13 @@ class CategoryTableSeeder extends Seeder
 
         $names = ['鍵', 'ドア', '窓', 'hoge', 'piyo'];
 
-        $i = 1;
-
-        foreach ($names as $name) {
+        foreach ($names as $i => $name) {
             DB::table('categories')->insert([
                 "category_name" => $name,
                 "open_icon" => "mdi-lock-open-variant-outline",
                 "close_icon" => "mdi-lock-outline",
+                "main" => $i % 2,
+                "user_id" => 1,
             ]);
         }
         

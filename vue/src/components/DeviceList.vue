@@ -4,25 +4,24 @@
 
             <DeviceAdd v-if="$store.state.device.addFlag" />
 
-                <draggable class="row drag" v-model="Full" handle=".card" v-bind="getOptions">
-                    <v-col class="list-col" cols="6" sm="3" xl="2" v-for="device in searchDevices" :key="device.id">
+                <draggable class="row drag" handle=".card" v-bind="getOptions">
+                    <v-col class="list-col" cols="6" sm="3" xl="2" v-for="(device, i) in searchDevices" :key="device.id">
 
                         <v-card class="card" :to="{name: 'DeviceDetail', query: {id: device.id}}">
 
                             <!-- アイコンだよ -->
-                            <v-icon v-if="device.categories[0] && device.logs[0]" class="card-icon">{{device.logs[device.logs.length-1].state ? device.categories[0].open_icon : device.categories[0].close_icon}}</v-icon>
-                            <v-icon v-else-if="device.categories[0]" class="card-icon">{{device.categories[0].close_icon}}</v-icon>
-                            <v-icon v-else class="card-icon">mdi-help</v-icon>
+                            <v-icon class="card-icon" v-if="categories[i]">{{state[device.id] ? categories[i].open_icon : categories[i].close_icon}}</v-icon>
+                            <v-icon class="card-icon" v-else>mdi-help</v-icon>
 
                             <!--タイトルだよ-->
                             <v-card-title class="card-title"> <span class="title">{{device.device_name}}</span> </v-card-title>
 
                             <!--サブタイトルだよ-->
-                            <v-card-subtitle style="font-size: 20px;" v-if="device.logs[0]"> {{device.logs[device.logs.length-1].state ? "OPEN" : "CLOSE"}} </v-card-subtitle>
-                            <v-card-subtitle style="font-size: 20px;" v-else>Log：Notset</v-card-subtitle>
+                            <v-card-subtitle class="subtitle" v-if="state[device.id] != null"> {{state[device.id] ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <v-card-subtitle class="subtitle" v-else>{{string.subtitle}}</v-card-subtitle>
 
                         </v-card>
-
+                        
                     </v-col>
                 </draggable>
 
@@ -42,28 +41,40 @@
         },
         computed: {
 
+            //取得
+            full(){
+                return this.$store.state.full.full.full
+            },
+            devices(){
+                return this.$store.state.full.full.full.devices
+            },
+            categories(){
+                return this.$store.state.full.full.full.categories
+            },
+            state(){
+                return this.$store.state.full.full.state
+            },
+            string(){
+                return this.$store.state.string.en.devicelist
+            },
+
             //検索
             searchDevices(){
-                return this.$store.state.full.full.filter(full => {
-                    let key = full.device_name.includes(this.$store.state.full.keyword)
-                    for(let i in full.categories){
-                        if(full.categories[i] != null){
-                            key += full.categories[i].category_name.includes(this.$store.state.full.keyword)
+                if(this.full){
+                    return this.full.devices.filter(devices => {
+                        let key = devices.device_name.includes(this.$store.state.full.keyword)
+                        
+                        for(let i in this.full.categories){
+                            if(this.full.categories[i] != null){
+                                key += this.full.categories[i].category_name.includes(this.$store.state.full.keyword)
+                            }
                         }
-                    }
-                    return key
-                })
+                        return key
+                    })
+                }else return ''
             },
 
             // draggable
-            Full: {
-                get() {
-                    return this.$store.state.full.full
-                },
-                set(value) {
-                    this.$store.commit('full/updateFull', value)
-                }
-            },
             getOptions(){
                 return {
                     delay:200,
@@ -119,6 +130,10 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+
+    .subtitle{
+        font-size: 20px;
     }
 
 </style>

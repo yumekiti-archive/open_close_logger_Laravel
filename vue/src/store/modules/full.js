@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     namespaced:true,
     state: {
@@ -11,13 +13,22 @@ export default {
         set: (state, response) => {
             state.full = response.data;
         },
+        update: (state, response) => {
+            state.full = response.data;
+        },
     },
     getters:{
     },
     actions: {
-        get({ commit }){
-            var url = "full"
-            commit('set', this.$store.dispatch('get', url));
+        async get({commit}){
+            await axios
+            .get('/api/full')
+            .then( response =>{
+                commit('set', response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
     },
 }

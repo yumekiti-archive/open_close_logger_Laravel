@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Device;
+use App\Category;
+use App\Log;
 
 class User extends Authenticatable
 {
@@ -42,16 +44,6 @@ class User extends Authenticatable
     public function devices()
     {
         return $this->hasMany(Device::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function logs()
-    {
-        return $this->hasMany(Log::class);
     }
 
     public function categories()
