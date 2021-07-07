@@ -16,7 +16,6 @@ test-ssl:
 
 .PHONY: init
 init:
-	rm ./docker/laravel-echo/laravel-echo-server.lock ; \
 	$(dc) -f ./docker/docker-compose.yml up -d --build && \
 	bash ./docker/php/php.sh
 	$(dc) -f ./docker/docker-compose.yml exec php /bin/bash -c "composer install" && \
@@ -82,3 +81,8 @@ npm:
 .PHONY: ssl
 ssl:
 	bash ./docker/nginx/ssl/ssl.sh
+
+.PHONY: file-rm
+file-rm:
+	rm ./docker/laravel-echo/laravel-echo-server.lock ; \
+	rm rm -r ./vue/node_modules/

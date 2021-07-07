@@ -55,6 +55,7 @@
                 })
             },
 
+            // draggable
             Full: {
                 get() {
                     return this.$store.state.full.full
@@ -63,7 +64,6 @@
                     this.$store.commit('full/updateFull', value)
                 }
             },
-            
             getOptions(){
                 return {
                     delay:200,
@@ -74,7 +74,7 @@
         },
         created() {
             //取得
-            this.$store.dispatch('full/getFull')
+            this.$store.dispatch('full/get')
         },
     }
 </script>

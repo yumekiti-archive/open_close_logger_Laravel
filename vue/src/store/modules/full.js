@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default {
     namespaced:true,
     state: {
@@ -10,26 +8,16 @@ export default {
         sort: 0,
     },
     mutations: {
-        setFull: (state, response) => {
+        set: (state, response) => {
             state.full = response.data;
-        },
-        updateFull:(state, value) => {
-            //ここでPOSTする
-            state.full = value;
         },
     },
     getters:{
     },
     actions: {
-        async getFull({ commit }){
-            await axios
-            .get('/api/devices')
-            .then( response =>{
-                commit('setFull', response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        get({ commit }){
+            var url = "full"
+            commit('set', this.$store.dispatch('get', url));
         },
     },
 }
