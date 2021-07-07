@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class,'device_category_chains','device_id','category_id');
+        return $this->hasMany(Category::class);
     }
 
 }
