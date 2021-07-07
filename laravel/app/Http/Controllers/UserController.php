@@ -14,6 +14,17 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
     //
+    public function full()
+    {
+        $user = Auth::user();
+
+        $full = $user->with('devices', 'categories')->get();
+
+        $log = $user->logs()->get();
+
+        return $full->with($log);
+    }
+
     public function login(LoginUserRequest $request)
     {
         

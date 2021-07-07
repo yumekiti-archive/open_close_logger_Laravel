@@ -32,14 +32,11 @@ class Device extends Model
     public function open()
     {
         return $this->logs()->create(['state' => true]);
-
-
     }
 
     public function close()
     {
         return $this->logs()->create(['state' => false]);
-
     }
 
 }

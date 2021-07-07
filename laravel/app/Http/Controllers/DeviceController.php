@@ -12,13 +12,6 @@ use Illuminate\Support\Str;
 class DeviceController extends Controller
 {
     //
-    public function full()
-    {
-        $devices = Auth::user()->devices()->with('logs', 'categories')->get();
-
-        return response()->json($devices);
-    }
-
     public function show($device_id)
     {
         $devices = Auth::user()->devices()->firstOrFail()->where('id', $device_id)->get();

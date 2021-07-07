@@ -44,4 +44,19 @@ class User extends Authenticatable
         return $this->hasMany(Device::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'device_category_chains','device_id','category_id');
+    }
+
 }
