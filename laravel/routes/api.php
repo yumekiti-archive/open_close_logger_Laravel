@@ -18,17 +18,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //user
+Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
 Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
-Route::get('/full', 'UserController@full')->middleware('auth:sanctum');
 
 //device
 Route::get('/devices/{device_id}', 'DeviceController@show')->middleware('auth:sanctum');
+Route::get('/devices', 'DeviceController@index')->middleware('auth:sanctum');
 Route::post('/devices/{device_id}', 'DeviceController@del')->middleware('auth:sanctum');
 Route::post('/devices', 'DeviceController@create')->middleware('auth:sanctum');
 
 //log
 Route::get('/logs/{device_id}', 'LogController@show')->middleware('auth:sanctum');
+Route::get('/state', 'LogController@state')->middleware('auth:sanctum');
 Route::post('/logs', 'LogController@log');
 
 //category

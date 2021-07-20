@@ -21,9 +21,6 @@ class CreateCategoriesTable extends Migration
             $table->string('category_name', 30);
             $table->string('open_icon', 50)->nullable()->default(null);
             $table->string('close_icon', 50)->nullable()->default(null);
-
-            //主カテゴリー判断
-            $table->boolean('main')->default(false);
             
             //外部キー制約
             $table->unsignedBigInteger('user_id')->index();

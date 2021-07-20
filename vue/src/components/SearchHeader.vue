@@ -5,7 +5,6 @@
         <v-toolbar-title>Search</v-toolbar-title>
         <v-autocomplete
             v-model="select"
-            :items="getItem"
             :search-input.sync="key"
             cache-items
             class="mx-4"
@@ -34,27 +33,12 @@
         methods:{
             close(){
                 this.$store.state.search = !this.$store.state.search
-                this.$store.state.full.keyword = ''
+                this.$store.state.keyword = ''
             }
-        },
-        computed:{
-            getItem(){
-                let item = []
-                if(this.$store.state.category.categories[0]){
-                    for(let i in this.$store.state.category.categories){
-                        var category = this.$store.state.category.categories[i].category_name;
-                        item[i] = category
-                    }
-                }
-                return item
-            }
-        },
-        created(){
-            this.$store.dispatch('category/getCategories')
         },
         watch: {
             key(){        
-                this.$store.state.full.keyword = this.key === null ? '' : this.key
+                this.$store.state.keyword = this.key === null ? '' : this.key
             },
         },
     }

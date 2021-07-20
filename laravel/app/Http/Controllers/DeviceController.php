@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 class DeviceController extends Controller
 {
     //
+    public function index()
+    {
+        $devices = Auth::user()->devices()->get();
+
+        return $devices;
+    }
+
     public function show($device_id)
     {
         $devices = Auth::user()->devices()->firstOrFail()->where('id', $device_id)->get();

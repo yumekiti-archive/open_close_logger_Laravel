@@ -12,6 +12,23 @@ use App\Events\StateEvent;
 class LogController extends Controller
 {
     //
+    public function state(){
+
+        $logs = Auth::user()->
+        devices()->
+        firstOrFail()->
+        logs()->
+        firstOrFail()->
+        get();
+
+        //状態取得
+        foreach($logs as $log){
+            $state[$log->device_id] = $log->state;
+        }
+
+        return $state;
+    }
+    
     public function show($device_id)
     {
         $logs = Auth::user()->

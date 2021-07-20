@@ -12,13 +12,14 @@ class CategoryController extends Controller
     public function show()
     {
         $devices = Auth::user()->
-        devices()->
-        firstOrFail()->
-        categories()->
-        firstOrFail()->
-        get();
+        devices()->get();
 
-        return response()->json($devices);
+        $data[] = null;
+        foreach($devices as $i => $device){
+            $data[$i] = $device->categories()->get()[0];
+        }
+
+        return $data;
     }
 
     public function only($device_id)

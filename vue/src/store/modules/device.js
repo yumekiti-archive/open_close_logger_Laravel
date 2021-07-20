@@ -7,6 +7,9 @@ export default {
         addFlag: false,
     },
     mutations: {
+        setDevice: (state, response) => {
+            state.devices = response.data;
+        },
         setDevices: (state, response) => {
             state.devices = response.data;
         },
@@ -14,9 +17,19 @@ export default {
     getters:{
     },
     actions: {
-        async getDevices({ commit }, id){
+        async getDevice({ commit }, id){
             await axios
             .get('/api/devices/' + id)
+            .then( response =>{
+                commit('setDevice', response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+        async getDevices({ commit }){
+            await axios
+            .get('/api/devices')
             .then( response =>{
                 commit('setDevices', response);
             })

@@ -14,25 +14,10 @@ use Illuminate\Validation\ValidationException;
 class UserController extends Controller
 {
     //
-    public function full()
-    {
+    public function index(){
         $user = Auth::user();
 
-        $full = $user->findOrFail($user->id)->load('devices', 'categories');
-
-        $logs = $user->
-        devices()->
-        firstOrFail()->
-        logs()->
-        firstOrFail()->
-        get();
-
-        //状態取得
-        foreach($logs as $i => $log){
-            $state[$log->device_id] = $log->state;
-        }
-
-        return with(['full'=>$full, 'state'=>$state]);
+        return $user;
     }
 
     public function login(LoginUserRequest $request)

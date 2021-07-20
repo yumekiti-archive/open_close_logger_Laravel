@@ -42,17 +42,14 @@
         computed: {
 
             //取得
-            full(){
-                return this.$store.state.full.full.full
-            },
             devices(){
-                return this.$store.state.full.full.full.devices
+                return this.$store.state.device.devices
             },
             categories(){
-                return this.$store.state.full.full.full.categories
+                return this.$store.state.category.categories
             },
             state(){
-                return this.$store.state.full.full.state
+                return this.$store.state.log.state
             },
             string(){
                 return this.$store.state.string.en.devicelist
@@ -60,18 +57,10 @@
 
             //検索
             searchDevices(){
-                if(this.full){
-                    return this.full.devices.filter(devices => {
-                        let key = devices.device_name.includes(this.$store.state.full.keyword)
-                        
-                        for(let i in this.full.categories){
-                            if(this.full.categories[i] != null){
-                                key += this.full.categories[i].category_name.includes(this.$store.state.full.keyword)
-                            }
-                        }
-                        return key
-                    })
-                }else return ''
+                return this.devices.filter(device => {
+                    let key = device.device_name.includes(this.$store.state.keyword)
+                    return key
+                })
             },
 
             // draggable
@@ -85,7 +74,10 @@
         },
         created() {
             //取得
-            this.$store.dispatch('full/get')
+            this.$store.dispatch('device/getDevices')
+            this.$store.dispatch('category/getCategories')
+            this.$store.dispatch('log/getState')
+            this.$store.dispatch('user/getUser')
         },
     }
 </script>

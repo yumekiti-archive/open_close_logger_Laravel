@@ -4,10 +4,7 @@ export default {
     namespaced:true,
     state: {
         full: [],
-        //検索
-        keyword: '',
-        //ソート
-        sort: 0,
+        
     },
     mutations: {
         set: (state, response) => {

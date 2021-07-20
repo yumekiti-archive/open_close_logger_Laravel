@@ -30,7 +30,7 @@ export default {
         },
         async getCategories({ commit }){
             await axios
-            .get('/api/categories/')
+            .get('/api/categories')
             .then( response =>{
                 commit('setCategories', response);
             })

@@ -22,5 +22,9 @@ class DeviceCategoryChainTableSeeder extends Seeder
             "category_id" => 2,
             "device_id" => 1,
         ]);
+        DB::table('device_category_chains')->insert([
+            "category_id" => 1,
+            "device_id" => 6,
+        ]);
     }
 }
