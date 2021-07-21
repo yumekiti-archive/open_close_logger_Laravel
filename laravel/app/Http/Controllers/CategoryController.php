@@ -11,6 +11,14 @@ class CategoryController extends Controller
     //
     public function show()
     {
+        $categories = Auth::user()->
+        categories()->get();
+
+        return $categories;
+    }
+
+    public function device()
+    {
         $devices = Auth::user()->
         devices()->get();
 
@@ -62,6 +70,20 @@ class CategoryController extends Controller
                 ]);
             }
         }
+    }
+
+    public function create(Request $req){
+        
+        $category = Auth::user()->
+        devices()->
+        firstOrFail()->
+        categories()->
+        create([
+            'category_name' => $req->input('category_name'),
+            'open_icon' => $req->input('open_icon'),
+            'close_icon' => $req->input('close_icon'),
+            'user_id' => Auth::user()->id,
+        ]);
     }
 
 }

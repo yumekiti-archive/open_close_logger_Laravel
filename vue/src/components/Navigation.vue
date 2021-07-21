@@ -31,7 +31,7 @@
             group: null,
             items:[
                 { title: "Device", icon: "mdi-access-point", url: "/device" },
-                { title: "Category", icon: "mdi-label-multiple-outline", url: "/category" },
+                { title: "Category", icon: "mdi-tag-multiple-outline", url: "/category" },
                 { title: "Statistics", icon: "mdi-chart-timeline-variant", url: "/" },
                 { title: "Login", icon: "mdi-login", url: "/login" },
                 { title: "Logout", icon: "mdi-logout", url: "/logout" },

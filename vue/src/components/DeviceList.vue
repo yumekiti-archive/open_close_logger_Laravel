@@ -46,7 +46,7 @@
                 return this.$store.state.device.devices
             },
             categories(){
-                return this.$store.state.category.categories
+                return this.$store.state.category.device
             },
             state(){
                 return this.$store.state.log.state
@@ -75,7 +75,7 @@
         created() {
             //取得
             this.$store.dispatch('device/getDevices')
-            this.$store.dispatch('category/getCategories')
+            this.$store.dispatch('category/getDeviceCategories')
             this.$store.dispatch('log/getState')
             this.$store.dispatch('user/getUser')
         },

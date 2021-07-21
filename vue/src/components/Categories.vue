@@ -1,14 +1,21 @@
 <template>
-    <v-data-table
-    :headers="headers"
-    :items="categories"
-    :items-per-page="10"
-    class="elevation-1"
-    ></v-data-table>
+    <div>
+        <CategoryCreate v-if="$store.state.category.addFlag" />
+        <v-data-table
+        :headers="headers"
+        :items="categories"
+        :items-per-page="10"
+        ></v-data-table>
+    </div>
 </template>
 <script>
+    import CategoryCreate from '@/components/CategoryCreate.vue'
+
     export default {
         name: 'Categories',
+        components:{
+            CategoryCreate,
+        },
         data () {
             return {
                 headers: [

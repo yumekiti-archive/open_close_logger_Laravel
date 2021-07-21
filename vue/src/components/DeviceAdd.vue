@@ -65,7 +65,7 @@
                 })
                 .then(() => {
                     this.$store.dispatch('device/getDevices')
-                    this.$store.dispatch('category/getCategories')
+                    this.$store.dispatch('category/getDeviceCategories')
                     this.$store.state.device.addFlag = false;
                 })
                 .catch(error => {
