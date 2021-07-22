@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Device from '../views/Device.vue'
 import DeviceDetail from '../views/DeviceDetail.vue'
 import Category from '../views/Category.vue'
+import Add from '../views/Add.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/category',
     name: 'Category',
     component: Category
+  },
+  {
+    path: '/add',
+    name: 'Add',
+    component: Add
   },
   {
     path: '/about',

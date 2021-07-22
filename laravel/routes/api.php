@@ -18,8 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //user
-Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
+Route::post('/add', 'UserController@add');
 Route::post('/login', 'UserController@login');
+Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
 Route::post('/logout', 'UserController@logout')->middleware('auth:sanctum');
 
 //device

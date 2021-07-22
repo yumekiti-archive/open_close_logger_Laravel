@@ -1,9 +1,8 @@
 <template>
-    <v-app>
-        <v-container class="container">
-            <v-row class="row">
-                <v-col cols="12" md="6">
-                    <v-card class="mx-auto mt-5">
+    <v-container class="container">
+        <v-row class="row">
+            <v-col cols="12" md="6">
+                <v-card class="mx-auto mt-5">
 
                         <v-card-title class="mx-auto mt-5">
                             <h1 class="display-1">Login</h1>
@@ -11,14 +10,16 @@
                         
                         <v-card-text>
                             <v-form>
-
+                                <v-text-field
+                                    prepend-icon="mdi-account"
+                                    label="Name"
+                                    v-model="name"
+                                />
                                 <v-text-field
                                     prepend-icon="mdi-account-circle"
                                     label="Email"
                                     v-model="email"
                                 />
-                                <span v-if="errors.email">{{ errors.email[0] }}</span>
-
                                 <v-text-field
                                     v-bind:type="showPassword ? 'text' : 'password'"
                                     @click:append="showPassword = !showPassword"
@@ -27,52 +28,45 @@
                                     label="Password"
                                     v-model="password"
                                 />
-                                <span v-if="errors.password">{{ errors.password[0] }}</span>
 
                                 <v-card-actions>
-                                    <v-btn class="info" @click="login">Login</v-btn>
+                                    <v-btn class="info" @click="add">add</v-btn>
                                 </v-card-actions>
 
                             </v-form>
-                                <router-link to="/add">add account</router-link>
                         </v-card-text>
-
-
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-    </v-app>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
     import axios from 'axios';
 
     export default {
-        name: 'Device',
-        data: () => ({
+        name: 'AddForm',
+        data: ()=>({
             showPassword: false,
 
+            name: null,
             email: null,
             password: null,
-            errors: [null],
         }),
         methods:{
-            async login(){
+            async add(){
                 let data = new FormData();
+                data.append("name", this.name);
                 data.append("email", this.email);
                 data.append("password", this.password);
                 
                 await axios.get('/api/csrf-cookie').then(() => {
                     axios
-                    .post("/api/login", data)
-                    .then(res => {
-                        this.$router.go(this.$router.push('/device'));
-                        localStorage.setItem("auth", "ture");
-                        localStorage.setItem("id", res.data.id);
+                    .post("/api/add", data)
+                    .then(() => {
+                        this.$router.go(this.$router.push('/login'));
                     })
                     .catch(error => {
-                        this.errors = error.response.data.errors;
                         console.log(error);
                     });
                 });
