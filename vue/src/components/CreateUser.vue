@@ -12,28 +12,6 @@
                         <v-card-text>
                             <v-form>
 
-                                <v-text-field
-                                    prepend-icon="mdi-account-circle"
-                                    label="Email"
-                                    v-model="email"
-                                />
-                                <span v-if="errors.email">{{ errors.email[0] }}</span>
-
-                                <v-text-field
-                                    v-bind:type="showPassword ? 'text' : 'password'"
-                                    @click:append="showPassword = !showPassword"
-                                    prepend-icon="mdi-lock" 
-                                    v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                    label="Password"
-                                    v-model="password"
-                                />
-                                <span v-if="errors.password">{{ errors.password[0] }}</span>
-
-                                <v-card-actions>
-                                    <v-btn class="info" @click="login">Login</v-btn>
-                                </v-card-actions>
-
-                                <router-link to="/about">Create account</router-link>
 
                             </v-form>
                         </v-card-text>
