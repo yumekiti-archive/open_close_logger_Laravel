@@ -67,9 +67,10 @@
                 await axios.get('/api/csrf-cookie').then(() => {
                     axios
                     .post("/api/login", data)
-                    .then(() => {
+                    .then(res => {
                         this.$router.go(this.$router.push('/device'));
                         localStorage.setItem("auth", "ture");
+                        localStorage.setItem("id", res.data.id);
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;

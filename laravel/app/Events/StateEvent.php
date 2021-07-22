@@ -10,24 +10,24 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-use App\Log;
-
 //  implements ShouldBroadcast
 class StateEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $log;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Log $log)
+    public function __construct($log, $user)
     {
         //
         $this->log = $log;
+        $this->user = $user;
     }
 
     /**
@@ -37,6 +37,6 @@ class StateEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('state-channel');
+        return new PrivateChannel('state-channel.' . $this->user->id);
     }
 }

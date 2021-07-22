@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         
         if (Auth::attempt($request->all())) {
-            return ['message' => 'ログイン'];
+            return Auth::user();
         }
 
         throw ValidationException::withMessages([

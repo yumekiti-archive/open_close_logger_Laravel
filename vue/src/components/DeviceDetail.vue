@@ -91,7 +91,7 @@
         },
         created() {
             //取得
-            this.$store.dispatch('device/getDevices', this.$route.query.id)
+            this.$store.dispatch('device/getDevice', this.$route.query.id)
             this.$store.dispatch('log/getLogs', this.$route.query.id)
             this.$store.dispatch('category/getCategory', this.$route.query.id)
         },

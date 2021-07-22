@@ -24,7 +24,7 @@ window.Echo = new Echo({
     host: window.location.host,
 });
 
-window.Echo.channel('state-channel')
+window.Echo.private('state-channel.' + localStorage.getItem('id'))
 .listen('StateEvent', () => {
 
     // パラメタ取得

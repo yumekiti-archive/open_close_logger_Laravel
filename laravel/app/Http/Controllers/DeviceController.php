@@ -29,7 +29,7 @@ class DeviceController extends Controller
     public function create(Request $req)
     {
         $name = $req->input('device_name');
-        $token = hash('sha512', Str::random(10));
+        $token = hash('sha512', Str::random(10) . $name);
 
         $devices = Auth::user()->devices();
 

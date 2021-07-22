@@ -44,9 +44,12 @@ class LogController extends Controller
 
     public function log(Request $req)
     {
+        $log = null;
+        $user = null;
+        
         $device = Device::where('token', $req->input('token'))->firstOrFail();
 
-        $log = null;
+        $user = $device->user()->firstOrFail();
 
         if($req->input('state')){
             $log = $device->open();
@@ -54,6 +57,6 @@ class LogController extends Controller
             $log = $device->close();
         }
 
-        event(new StateEvent($log));
+        event(new StateEvent($log, $user));
     }
 }
