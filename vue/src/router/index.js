@@ -14,10 +14,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: Home
   },
   {
     path: '/login',
@@ -27,34 +24,22 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    component: Logout,
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: Logout
   },
   {
     path: '/device',
     name: 'Device',
-    component: Device,
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: Device
   },
   {
     path: '/device/detail',
     name: 'DeviceDetail',
-    component: DeviceDetail,
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: DeviceDetail
   },
   {
     path: '/category',
     name: 'Category',
-    component: Category,
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: Category
   },
   {
     path: '/add',
@@ -67,10 +52,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    beforeEnter: (to, from, next) => {
-      next('/login');
-    }
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
