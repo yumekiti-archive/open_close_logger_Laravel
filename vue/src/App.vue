@@ -7,8 +7,7 @@
         <SearchHeader v-if="$store.state.search" />
 
         <v-main id="scrolling">
-            <router-view v-if="this.$store.state.user.auth || this.$route.path === '/login'" />
-            <router-view v-if="this.$store.state.user.auth || this.$route.path === '/add'" />
+            <router-view v-if="this.$store.state.user.auth || this.$route.path === '/login' || this.$route.path === '/add'"/>
         </v-main>
         
     </v-app>

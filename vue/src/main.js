@@ -36,7 +36,9 @@ window.Echo.private('state-channel.' + localStorage.getItem('id'))
     if(id){
         store.dispatch('log/getLogs', id)
     }else{
-        store.dispatch('full/getFull')
+        store.dispatch('device/getDevices')
+        store.dispatch('category/getDeviceCategories')
+        store.dispatch('log/getState')
     }
 
 });
