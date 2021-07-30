@@ -19,6 +19,8 @@
                             <!--サブタイトルだよ-->
                             <v-card-subtitle class="subtitle" v-if="state[device.id] != null"> {{state[device.id] ? "OPEN" : "CLOSE"}} </v-card-subtitle>
                             <v-card-subtitle class="subtitle" v-else>{{string.subtitle}}</v-card-subtitle>
+                            <span v-if="state[device.id]" style="float: right;"><v-icon color="blue">mdi-checkbox-blank-circle</v-icon></span>
+                            <span v-else style="float: right;"><v-icon color="red">mdi-checkbox-blank-circle</v-icon></span>
 
                         </v-card>
                         

@@ -20,11 +20,15 @@
                             Token：<br>
                             {{device.token}}
                         </v-card-text>
+
                         <!-- カテゴリー情報だお -->
                         <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].state ? category[0].open_icon : category[0].close_icon }}</v-icon>
                         <v-icon v-else-if="log[0] == null && category[0]" class="icon">{{category[0].close_icon}}</v-icon>
                         <v-icon v-else class="icon">mdi-help</v-icon>
-                        <v-card-text v-if="category[0]"> <v-btn rounded small @click="categoryAdd">Category</v-btn>： <v-chip class="mx-1" v-for="cate in category" :key="cate.id">{{ cate.category_name }}</v-chip> </v-card-text>
+                        <v-card-text v-if="category[0]">
+                        <v-btn rounded small @click="categoryAdd">Category</v-btn>： 
+                        <v-chip class="cate mx-1" v-for="cate in category" :key="cate.id">{{ cate.category_name }}</v-chip>
+                        </v-card-text>
                         <v-card-text v-else>Category：Notset</v-card-text>
                     </v-card>
 
@@ -35,7 +39,11 @@
                     <!-- ログ情報だお -->
                     <v-card class="mb-5" v-for="log in log.slice().reverse()" :key="log.id">
                         <v-card-title> {{log.created_at}} </v-card-title>
-                        <v-card-text> {{log.state ? "OPEN" : "CLOSE" }} </v-card-text>
+                        <v-card-text>
+                            {{log.state ? "OPEN" : "CLOSE" }}
+                            <span v-if="log.state" style="float: right;"><v-icon color="blue">mdi-checkbox-blank-circle</v-icon></span>
+                            <span v-else style="float: right;"><v-icon color="red">mdi-checkbox-blank-circle</v-icon></span>
+                        </v-card-text>
                     </v-card>
 
                 </v-col>
@@ -86,6 +94,13 @@
 
             category(){
                 return this.$store.state.category.category
+            },
+
+            getOptions(){
+                return {
+                    delay:200,
+                    animation:300,
+                }
             },
             
         },

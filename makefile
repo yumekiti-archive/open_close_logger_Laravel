@@ -86,3 +86,10 @@ ssl:
 file-rm:
 	rm ./docker/laravel-echo/laravel-echo-server.lock ; \
 	rm rm -r ./vue/node_modules/
+
+.PHONY: open
+open:
+	python3 ./raspi/test/open.py
+.PHONY: close
+close:
+	python3 ./raspi/test/close.py
