@@ -22,12 +22,21 @@
                         </v-card-text>
 
                         <!-- カテゴリー情報だお -->
-                        <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].state ? category[0].open_icon : category[0].close_icon }}</v-icon>
-                        <v-icon v-else-if="log[0] == null && category[0]" class="icon">{{category[0].close_icon}}</v-icon>
-                        <v-icon v-else class="icon">mdi-help</v-icon>
-                        <v-card-text v-if="category[0]">
-                        <v-btn rounded small @click="categoryAdd">Category</v-btn>： 
-                        <v-chip class="cate mx-1" v-for="cate in category" :key="cate.id">{{ cate.category_name }}</v-chip>
+                        <div v-if="this.mainCategory">
+                            <v-icon v-if="log[0]" class="icon">{{log[log.length - 1].state ? mainCategory.open_icon : mainCategory.close_icon }}</v-icon>
+                            <v-icon v-else-if="log[0] == null && mainCategory" class="icon">{{mainCategory.close_icon}}</v-icon>
+                            <v-icon v-else class="icon">mdi-help</v-icon>
+                        </div>
+                        <v-card-text v-if="mainCategory">
+                            <v-btn rounded small @click="categoryAdd">Category</v-btn>： 
+                            <v-chip class="cate mx-1" v-for="cate in category" :key="cate.id">
+                                <div v-if="device.category_main == cate.id">
+                                    <span style="color: red;">{{ cate.category_name }}</span>
+                                </div>
+                                <div v-else>
+                                    {{ cate.category_name }}
+                                </div>
+                            </v-chip>
                         </v-card-text>
                         <v-card-text v-else>Category：Notset</v-card-text>
                     </v-card>
@@ -96,11 +105,8 @@
                 return this.$store.state.category.category
             },
 
-            getOptions(){
-                return {
-                    delay:200,
-                    animation:300,
-                }
+            mainCategory(){
+                return this.category.filter(data => data.id == this.device.category_main)[0];
             },
             
         },

@@ -36,6 +36,7 @@ class DeviceController extends Controller
         $data = $devices->create([
             'device_name' => $name,
             'token' => $token,
+            'category_main' => $req->input('id'),
         ]);
         
         $data->

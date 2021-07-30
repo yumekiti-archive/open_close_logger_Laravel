@@ -19,6 +19,7 @@ class DeviceTableSeeder extends Seeder
             'updated_at' => new DateTime(),
             "token" => "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasda",
             "device_name" => "テストデバイス",
+            "category_main" => 1,
             "user_id" => 1
         ]);
         
@@ -29,6 +30,7 @@ class DeviceTableSeeder extends Seeder
             'updated_at' => new DateTime(),
             "token" => "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd",
             "device_name" => "テストデバイス",
+            "category_main" => 2,
             "user_id" => 2
         ]);
 

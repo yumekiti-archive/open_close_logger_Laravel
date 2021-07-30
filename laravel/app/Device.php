@@ -11,7 +11,7 @@ use App\DeviceCategoryChain;
 
 class Device extends Model
 {
-    protected $fillable = ['device_name','token'];
+    protected $fillable = ['device_name','token','category_main'];
     
     //
     public function user()

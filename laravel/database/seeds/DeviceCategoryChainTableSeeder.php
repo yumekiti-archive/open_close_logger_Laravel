@@ -14,7 +14,7 @@ class DeviceCategoryChainTableSeeder extends Seeder
         //
         for($i = 1; $i <= 5; $i++ ){
             DB::table('device_category_chains')->insert([
-                "category_id" => $i,
+                "category_id" => 1,
                 "device_id" => $i,
             ]);
         }

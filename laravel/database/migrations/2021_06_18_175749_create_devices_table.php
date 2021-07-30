@@ -22,6 +22,8 @@ class CreateDevicesTable extends Migration
             $table->string('token', 128)->unique()->nullable()->default(null);
             $table->string('device_name', 30);
 
+            $table->integer('category_main')->default(0);
+
             //外部キー制約
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
