@@ -11,6 +11,9 @@
                     <v-list-item-title class="text-h6">
                         OCLogger
                     </v-list-item-title>
+                    <v-list-item-subtitle>
+                        User：{{this.user.name}}
+                    </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 
@@ -32,10 +35,18 @@
             items:[
                 { title: "Device", icon: "mdi-access-point", url: "/device" },
                 { title: "Category", icon: "mdi-tag-multiple-outline", url: "/category" },
-                { title: "Statistics", icon: "mdi-chart-timeline-variant", url: "/" },
+                // { title: "Statistics", icon: "mdi-chart-timeline-variant", url: "/" },
                 { title: "Login", icon: "mdi-login", url: "/login" },
                 { title: "Logout", icon: "mdi-logout", url: "/logout" },
             ]
         }),
+        computed: {
+            user(){
+                return this.$store.state.user.user
+            },
+        },
+        created() {
+            this.$store.dispatch('user/getUser')
+        }
     }
 </script>
