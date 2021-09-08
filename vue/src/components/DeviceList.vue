@@ -17,10 +17,15 @@
                             <v-card-title class="card-title"> <span class="title">{{device.device_name}}</span> </v-card-title>
 
                             <!--サブタイトルだよ-->
-                            <v-card-subtitle class="subtitle" v-if="state[device.id] != null"> {{state[device.id] ? "OPEN" : "CLOSE"}} </v-card-subtitle>
+                            <v-card-subtitle class="subtitle" v-if="state[device.id] != null">
+                                <div v-if="state[device.id]">
+                                    <span style="color: blue;">OPEN</span>
+                                </div>
+                                <div v-else>
+                                    <span style="color: red;">CLOSE</span>
+                                </div>
+                            </v-card-subtitle>
                             <v-card-subtitle class="subtitle" v-else>{{string.subtitle}}</v-card-subtitle>
-                            <span v-if="state[device.id]" style="float: right;"><v-icon color="blue">mdi-checkbox-blank-circle</v-icon></span>
-                            <span v-else style="float: right;"><v-icon color="red">mdi-checkbox-blank-circle</v-icon></span>
 
                         </v-card>
                         
