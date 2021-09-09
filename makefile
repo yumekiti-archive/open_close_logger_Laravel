@@ -5,6 +5,7 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 
 .PHONY: test
 test:
+	make file-rm
 	make init
 	make seed
 
@@ -12,9 +13,9 @@ test:
 init:
 	$(dc) up -d --build && \
 	bash ./docker/php/php.sh
-	$(dc) exec php /bin/bash -c "composer install" && \
-	$(dc) exec php /bin/bash -c "cp .env.example .env" && \
-	$(dc) exec php /bin/bash -c "php artisan key:generate" && \
+	$(dc) exec php /bin/bash -c "composer install"
+	$(dc) exec php /bin/bash -c "cp .env.example .env"
+	$(dc) exec php /bin/bash -c "php artisan key:generate"
 	$(dc) exec php /bin/bash -c "php artisan migrate"
 
 .PHONY: seed
@@ -64,6 +65,11 @@ sh-vue:
 .PHONY: d-rm
 d-rm:
 	docker stop `docker ps -aq` ;\
+	docker rm `docker ps -aq`
+
+.PHONY: d-clean
+d-rm:
+	docker stop `docker ps -aq` ;\
 	docker rm `docker ps -aq` ; \
 	docker rmi `docker images -q` ;\
 	docker system prune -f ;\
@@ -72,7 +78,7 @@ d-rm:
 
 .PHONY: npm
 npm:
-	$(dc) exec vue /bin/bash -c "npm install" && \
+	$(dc) exec vue /bin/bash -c "npm install"
 	$(dc) exec vue /bin/bash -c "npm run build"
 
 .PHONY: ssl
