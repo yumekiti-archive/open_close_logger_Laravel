@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import Push from 'push.js'
 
 Vue.config.productionTip = false
 
@@ -25,7 +26,7 @@ window.Echo = new Echo({
 });
 
 window.Echo.private('state-channel.' + localStorage.getItem('id'))
-.listen('StateEvent', () => {
+.listen('StateEvent', (data) => {
 
     // パラメタ取得
     var url = new URL(window.location.href);
@@ -40,5 +41,10 @@ window.Echo.private('state-channel.' + localStorage.getItem('id'))
         store.dispatch('category/getDeviceCategories')
         store.dispatch('log/getState')
     }
+    
+    var state = data.log.device_id ? 'OPEN.' : 'CLOSE.'
+    var notification = store.state.device.devices[(data.log.device_id - 1)].device_name + ' ' + state
 
+    Push.create(notification)
+    
 });
