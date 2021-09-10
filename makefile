@@ -65,7 +65,10 @@ sh-vue:
 d-rm:
 	docker stop `docker ps -aq` ;\
 	docker rm `docker ps -aq` ; \
-	docker rmi `docker images -q`
+	docker rmi `docker images -q` ;\
+	docker system prune -f ;\
+	docker volume prune -f ;\
+	docker network prune -f
 
 .PHONY: npm
 npm:
