@@ -94,5 +94,5 @@ clean:
 	make d-rm
 
 .PHONY: pi-test
-clean:
+pi-test:
 	python3 ./raspi/test/test-OCLogger.py
