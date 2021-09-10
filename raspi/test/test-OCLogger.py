@@ -9,7 +9,7 @@ ip = input()
 
 token = "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasda"
 
-pin = 26
+pin = 21
 
 # 以下URLが等しくない時変更 URL設定
 url = "http://" + ip + "/api/logs"

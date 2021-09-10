@@ -42,7 +42,7 @@ window.Echo.private('state-channel.' + localStorage.getItem('id'))
         store.dispatch('log/getState')
     }
     
-    var state = data.log.device_id ? 'OPEN.' : 'CLOSE.'
+    var state = data.log.state ? 'OPEN.' : 'CLOSE.'
     var notification = store.state.device.devices[(data.log.device_id - 1)].device_name + ' ' + state
 
     Push.create(notification)
