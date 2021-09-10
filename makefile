@@ -8,12 +8,6 @@ test:
 	make init
 	make seed
 
-.PHONY: test-ssl
-test-ssl:
-	make ssl
-	make init
-	make seed
-
 .PHONY: init
 init:
 	$(dc) up -d --build && \
@@ -98,3 +92,7 @@ close:
 clean:
 	make file-rm
 	make d-rm
+
+.PHONY: pi-test
+clean:
+	python3 ./raspi/test/test-OCLogger.py
