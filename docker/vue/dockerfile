@@ -1,10 +1,6 @@
 FROM node:14.17.0
 
-WORKDIR /mnt/vue/
-
-ENV NODE_OPTIONS="--max-old-space-size=1024"
-
 RUN npm install -g npm && \
 	npm install -g @vue/cli
 
-CMD ["/bin/bash"]
+CMD ["/bin/sh"]
