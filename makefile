@@ -7,7 +7,7 @@ dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
 test:
 	make file-rm
 	make init
-	make seed
+	make fresh
 
 .PHONY: init
 init:
@@ -68,7 +68,7 @@ d-rm:
 	docker rm `docker ps -aq`
 
 .PHONY: d-clean
-d-rm:
+d-clean:
 	docker stop `docker ps -aq` ;\
 	docker rm `docker ps -aq` ; \
 	docker rmi `docker images -q` ;\
